@@ -3,11 +3,12 @@ import Product2 from "@/datatest/images/product2.png";
 import Product3 from "@/datatest/images/product3.jpg";
 import Product4 from "@/datatest/images/product4.png";
 import Product5 from "@/datatest/images/product5.jpg";
+import { StaticImageData } from "next/image";
 
 export type ProductDataProps = {
   id: number;
   name: string;
-  image: string;
+  image: StaticImageData;
   description: string;
   price: number;
 };

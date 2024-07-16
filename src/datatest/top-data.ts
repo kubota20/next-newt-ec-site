@@ -1,11 +1,12 @@
 import TopImage1 from "@/datatest/images/top1.jpg";
 import TopImage2 from "@/datatest/images/top2.jpg";
 import TopImage3 from "@/datatest/images/top3.jpg";
+import { StaticImageData } from "next/image";
 
 export interface TopImageProps {
   id: number;
   title: string;
-  image: string;
+  image: StaticImageData;
   buttonText: string;
 }
 
