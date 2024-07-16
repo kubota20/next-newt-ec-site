@@ -19,11 +19,6 @@ export const MainNav = () => {
       active: `/news`,
     },
     {
-      href: `/order-details`,
-      label: "注文履歴",
-      active: `/order-details`,
-    },
-    {
       href: `/contact`,
       label: "お問い合わせ",
       active: `/contact`,
@@ -31,14 +26,12 @@ export const MainNav = () => {
   ];
 
   return (
-    <nav>
-      <ul className="flex space-x-4">
-        {routes.map((route) => (
-          <li key={route.href}>
-            <Link href={route.href}>{route.label}</Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <>
+      {routes.map((route) => (
+        <p key={route.href}>
+          <Link href={route.href}>{route.label}</Link>
+        </p>
+      ))}
+    </>
   );
 };
