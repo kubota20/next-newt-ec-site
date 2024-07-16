@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layouts/navbar";
+import HeaderNav from "@/components/layouts/header-nav";
 
 const inter = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <Navbar />
+        <HeaderNav />
         {children}
       </body>
     </html>

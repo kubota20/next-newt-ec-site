@@ -38,8 +38,8 @@
 
 - Max: `max-width:1280px`
 - PC : `min-width: 1024px`
-- タブレット : `min-width: 768px`
-- スマホ : `min-width: 640px`
+- タブレット : `min-width: 640px`
+- スマホ : `max-width: 640px`
 
 ### 5. Next.js のプロジェクトを作成
 
