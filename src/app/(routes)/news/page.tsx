@@ -1,6 +1,8 @@
+// components
 import Container from "@/components/elements/container";
+
+// features
 import { NewsBox } from "@/features/news/news-box";
-import React from "react";
 
 // test
 import { NewsData } from "@/datatest/news-data";

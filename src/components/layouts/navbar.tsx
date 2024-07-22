@@ -1,5 +1,3 @@
-import React from "react";
-
 // icon
 import { Menu } from "lucide-react";
 

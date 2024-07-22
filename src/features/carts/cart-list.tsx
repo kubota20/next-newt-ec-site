@@ -1,6 +1,8 @@
+// features
 import { CartCard } from "@/features/carts/cart-card";
+
+// test
 import { ProductData } from "@/datatest/product-data";
-import React from "react";
 
 export const CartList = () => {
   return (

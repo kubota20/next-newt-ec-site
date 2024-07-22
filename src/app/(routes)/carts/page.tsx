@@ -1,6 +1,8 @@
+// components
 import Container from "@/components/elements/container";
+
+// features
 import { CartList } from "@/features/carts/cart-list";
-import React from "react";
 
 const CartsPage = () => {
   return (

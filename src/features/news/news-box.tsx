@@ -1,5 +1,5 @@
+// test
 import { NewsDataProps } from "@/datatest/news-data";
-import React from "react";
 
 interface NewsProps {
   item: NewsDataProps;

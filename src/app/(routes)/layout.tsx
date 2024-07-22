@@ -7,8 +7,10 @@ export default function RouteLayout({
 }>) {
   return (
     <>
-      {children}
-      <Footer />
+      <div className="flex flex-col justify-between h-screen">
+        {children}
+        <Footer />
+      </div>
     </>
   );
 }

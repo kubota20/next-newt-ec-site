@@ -1,6 +1,8 @@
+// components
 import Container from "@/components/elements/container";
+
+// features
 import ContactForm from "@/features/contact/contact-form";
-import React from "react";
 
 const ContactPage = () => {
   return (
