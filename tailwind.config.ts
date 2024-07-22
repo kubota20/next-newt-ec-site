@@ -10,6 +10,7 @@ const config = {
   ],
   prefix: "",
   theme: {},
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;
