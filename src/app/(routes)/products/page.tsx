@@ -3,9 +3,11 @@ import React from "react";
 // test
 import { ProductData } from "@/datatest/product-data";
 
+// features
+import { ProductCard } from "@/features/products/product-card";
+
 // components
 import Container from "@/components/elements/container";
-import { ProductCard } from "@/features/products/product-card";
 import {
   Pagination,
   PaginationContent,
@@ -15,13 +17,23 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/elements/pagination";
+import { CategorySelect } from "@/components/elements/category-select";
+import { TitleSearch } from "@/components/elements/title-search";
 
 const ProductsPage = () => {
   return (
     <div className="flex flex-col bg-[rgb(248,248,248)]">
       <Container>
         <div className="my-32">
-          <h2 className="text-center my-16 font-bold text-3xl">商品</h2>
+          <div className="flex items-center justify-between my-16">
+            <div className="w-full">
+              <h2 className="font-bold text-3xl text-center">商品</h2>
+            </div>
+            <div className="flex items-center gap-2">
+              <CategorySelect />
+              <TitleSearch />
+            </div>
+          </div>
 
           {/* 商品カード */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
