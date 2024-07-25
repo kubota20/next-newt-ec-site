@@ -34,12 +34,12 @@
 - カート
 - 削除(注文,カート)
 
-### 5. レスポンシブデザイン
+### 5. レスポンシブ
 
-- Max: `max-width:1280px`
-- PC : `min-width: 1024px`
-- タブレット : `min-width: 640px`
-- スマホ : `max-width: 640px`
+- Max: 1280px
+- PC : 1024px
+- タブレット : 640px
+- スマホ : 380px
 
 ### 5. Next.js のプロジェクトを作成
 
@@ -48,6 +48,8 @@
 ```
 pnpm create next-app my-app --typescript --tailwind --eslint
 ```
+
+その後`GitHub`にリモートリポジトリにして push します。
 
 #### コマンドの中身
 
@@ -66,15 +68,67 @@ pnpm create next-app my-app --typescript --tailwind --eslint
 
 ### 7. ページを作成
 
-`datatest`を使用しホームページ、お問い合せページ、news ページ、他色々、を作成していきます。
+`datatest`を使用しホームページ、お問い合せページ、news ページ、他色々、を作成していきます。ここまでの作成は静的ページだけです。
 
-### . vercel にデプロイ
+### 8. vercel にデプロイ
 
-### 出来なかったこと
+[vercel](https://vercel.com/) > `Add New` > `Project` > push してある`Git Repository`を`import` > `Configure Project`設定 > Deploy
+
+[初期デプロイ](https://next-newt-ec-site-kuc8cuxm9-kubota20s-projects.vercel.app/)
+
+初期デプロイは認証機能の`clerk`や Headless CMS の`newt CMS`は使用していません。また動的ルートもまだ入れていません。デザインだけになります。
+初期デプロイ後に色々導入していきます。
+
+### 9. 動的ルート
+
+動的ルートを作っていきます。作るのは news ページと商品ページの動的ページを作成します。
+
+カテゴリーを忘れていたので categories ページと動的ページの作成と追加で Products ページにカテゴリー選択と検索 input を追加していきます。
+
+`追加した動的ページ`
+
+- [categories](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/categories/a) : `[categoryId]`
+- [news](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/news/a) : `[newsId]`
+- [products](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/products/a) : `[productId]`
+
+categoryId と productId の中身は同じなのでそのまま使い回してます。
+
+### 10. Clerk を使って認証機能を導入
+
+最初は`next-auth`を使って認証機能を入れようとしましたが、コードが多くなるとサイトの表示速度が遅くなるのと、簡単に導入できコード量も少なくユーザー情報も管理出来るので`Clerk`を選びました。
+
+## 警告時の対処
+
+### next/iamge
+
+- `objectFitとlayout`プロパティの警告
+
+Next.js 13 以降では使わないので`objectFitとlayout`プロパティは削除
+
+- `Largest Contentful Paint (LCP)`の警告
+
+`LCP`とはウェブページのメインコンテンツが読み込まれるまでの時間を測定するパフォーマンス指標です。
+LCP の警告が出たのはホームページの[スライド画像](/my-app/src/features/home/top-images.tsx)なので`next/iamge`で画像を自動的に最適化するには`priority`プロパティを使って最適化します。
+
+```:ruby
+
+// 最初の画像を優先します
+<Image priority={index === 0} />
+
+```
+
+## 出来なかったこと
+
+### figma
 
 `figma`を使いデザインを作ろうとしたが、あんまりなデザインに作成を中止しました。また操作も不慣れで時間もかけすぎると考え素早く作りったかった為それも踏まえ中止しました。でも、`figma`はチーム開発で使われることがあるとのことで一度触ってみて良かったと思っています。時間があればまた自分で作ってみたいです。
 
 [figma で作ったデザイン](https://www.figma.com/design/A55Wt9baMnK1xrHVHMlClD/%E7%84%A1%E9%A1%8C?m=auto&t=LN38QPFNqMBxwYWF-6)
+
+### Clerk
+
+`Clerk`の`<AuthButton/>`を 640px 以内で表示される`Navbar`に追加してみたが、Clerk のモーダルは表示されるがサインインもサインアウトも出来ない。
+理由も分からず難航した為[Navbar](/my-app/src/components/layouts/navbar.tsx)での[<AuthButton/>](/my-app/src/components/elements/auth-button.tsx)を入れるのをやめました。
 
 ## Vitest
 
