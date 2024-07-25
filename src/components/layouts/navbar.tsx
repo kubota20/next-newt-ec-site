@@ -9,11 +9,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/elements/sheet";
-import { MainNav } from "./main-nav";
+import { MainNav } from "@/components/layouts/main-nav";
 
 export const Navbar = () => {
   return (
-    <div className="flex items-center ">
+    <div className="flex items-center relative">
       <Sheet>
         <SheetTrigger>
           <Menu />
