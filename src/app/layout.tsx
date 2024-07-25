@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
+
+// styles
 import "./globals.css";
+
+// components
 import HeaderNav from "@/components/layouts/header-nav";
+
+// clerk 認証機能
+import { ClerkProvider } from "@clerk/nextjs";
+import { jaJP } from "@clerk/localizations"; // 日本言語を取得
 
 const inter = Noto_Sans_JP({ subsets: ["latin"] });
 
@@ -16,11 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <body className={inter.className}>
-        <HeaderNav />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider localization={jaJP}>
+      <html lang="ja">
+        <body className={inter.className}>
+          <HeaderNav />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
