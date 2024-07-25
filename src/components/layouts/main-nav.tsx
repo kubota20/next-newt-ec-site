@@ -28,7 +28,9 @@ export const MainNav = () => {
     <>
       {routes.map((route) => (
         <p key={route.href}>
-          <Link href={route.href}>{route.label}</Link>
+          <Link href={route.href} className="hover:text-slate-600">
+            {route.label}
+          </Link>
         </p>
       ))}
     </>
