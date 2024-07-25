@@ -26,7 +26,7 @@ export const TopImages = () => {
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
-        className="relative "
+        className="relative"
       >
         <CarouselContent>
           {TopData.map((item, index) => (
@@ -35,9 +35,9 @@ export const TopImages = () => {
                 <Image
                   src={item.image}
                   alt={item.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="object-cover"
+                  // priorityはLCP画像用
+                  priority={index === 0}
+                  className="object-cover h-full"
                 />
                 {/* 黒い半透明のオーバーレイ */}
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-300 bg-black opacity-35" />
