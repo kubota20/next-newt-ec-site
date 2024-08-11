@@ -5,10 +5,14 @@ import Container from "@/components/elements/container";
 import { ProductCard } from "@/features/products/product-card";
 import { Info } from "@/components/elements/info";
 
-// test
-import { ProductData } from "@/datatest/product-data";
+// actions
+import { getProducts } from "@/actions/get-products";
 
-const ProductList = () => {
+// test
+// import { ProductData } from "@/datatest/product-data";
+
+const ProductList = async () => {
+  const ProductData = await getProducts();
   return (
     <section className="bg-[rgb(248,248,248)]">
       <Container>
@@ -18,9 +22,11 @@ const ProductList = () => {
             <div className="bg-[#E2E8DE] w-full h-32 lg:h-52 rounded-full border p-3">
               <Info title="商品" />
             </div>
-            {ProductData.map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))}
+            {ProductData.map(
+              (item, index) =>
+                // ホームでは5件まで表示するようにしてます
+                index < 5 && <ProductCard key={item._id} item={item} />
+            )}
           </div>
         </div>
         {/* Products Link */}
