@@ -1,7 +1,8 @@
-import React from "react";
-
 // test
-import { ProductData } from "@/datatest/product-data";
+// import { ProductData } from "@/datatest/product-data";
+
+// actions
+import { getProducts } from "@/actions/get-products";
 
 // features
 import { ProductCard } from "@/features/products/product-card";
@@ -20,7 +21,9 @@ import {
 import { CategorySelect } from "@/components/elements/category-select";
 import { TitleSearch } from "@/components/elements/title-search";
 
-const ProductsPage = () => {
+const ProductsPage = async () => {
+  const productData = await getProducts();
+
   return (
     <div className="flex flex-col bg-[rgb(248,248,248)]">
       <Container>
@@ -37,8 +40,8 @@ const ProductsPage = () => {
 
           {/* 商品カード */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-            {ProductData.map((item) => (
-              <ProductCard key={item.id} item={item} />
+            {productData.map((item) => (
+              <ProductCard key={item._id} item={item} />
             ))}
           </div>
         </div>
