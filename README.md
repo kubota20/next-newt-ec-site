@@ -97,15 +97,91 @@ categoryId と productId の中身は同じなのでそのまま使い回して�
 
 最初は`next-auth`を使って認証機能を入れようとしましたが、コードが多くなるとサイトの表示速度が遅くなるのと、簡単に導入できコード量も少なくユーザー情報も管理出来るので`Clerk`を選びました。
 
-## 警告時の対処
+### 11. Newt (ニュート)
+
+`Newt`とはクラウドサービスとして提供され、API によるコンテンツ配信と柔軟なコンテンツモデリングを行うことができる`ヘッドレスCMS`です。
+
+Newt での作成の流れは[ドキュメント](https://www.newt.so/docs/tutorials/get-contents-in-nextjs)を参考にしています。
+
+1. Newt に[ログイン](https://www.newt.so/)
+2. `Appを追加`で`テンプレートから追加`を押し、Blog と Contact を作成
+3. Blog の名前を News と Product に修正
+4. それぞれのモデルや記事投稿は[datatest](/my-app/src/datatest/)の中身を参考に作成
+5. curl コマンドでリクエスト送り正しくレスポンスが返ってくるか確認
+6. Newt の[SDK](https://github.com/Newt-Inc/newt-client-js?tab=readme-ov-file)を利用
+7. 環境変数を設定
+8. [lib/newt.ts](/my-app/src/lib/newt.ts)を作成し API クライアントを作成
+9. [型定義](/my-app/src/types/types.ts)を作成
+10. [actions](/my-app/src/actions/)で取得メソッドを作成
+
+## 警告やエラーの対処
+
+### TypeScript
+
+- Newt (エラー)
+
+Newt での画像の型定義をする場合必ず`height`や`width`を必ず入れてください。
+next/image コンポーネントは`StaticImageData`型を使って画像の情報を管理します。
+そこには`height`や`width`プロパティが含まれているため、これ等の型定義が必要になります。
+
+```
+export interface Image {
+  _id: string;
+  src: string;
+  title: string;
+  height: number;
+  width: number;
+}
+```
+
+- Product (エラー)
+
+- エラー内容 -
+
+型 'ProductProps | undefined' を型 'ProductProps' に割り当てることはできません。
+型 'undefined' を型 'ProductProps' に割り当てることはできません。ts(2322)
+
+- 原因 -
+
+```:ruby
+const ProductData = articles.find((item) => item._id === data._id);
+
+```
+
+ProductData には find メソッドを使用している場合、`undefined`になる可能性があり、このエラーが出たと思われます。
+
+- 解決策 -
+
+item に undefined を追加、
+
+```:ruby
+
+type ProductDataProps = {
+  item: ProductProps | undefined;
+};
+
+export const Product = ({ item }: ProductDataProps) => {
+
+
+  if (!item) {
+  return <div>商品が見つかりません。</div>;
+}
+
+  return (
+
+    ...
+  )
+}
+
+```
 
 ### next/iamge
 
-- `objectFitとlayout`プロパティの警告
+- `objectFitとlayout`プロパティ (警告)
 
 Next.js 13 以降では使わないので`objectFitとlayout`プロパティは削除
 
-- `Largest Contentful Paint (LCP)`の警告
+- `Largest Contentful Paint (LCP)` (警告)
 
 `LCP`とはウェブページのメインコンテンツが読み込まれるまでの時間を測定するパフォーマンス指標です。
 LCP の警告が出たのはホームページの[スライド画像](/my-app/src/features/home/top-images.tsx)なので`next/iamge`で画像を自動的に最適化するには`priority`プロパティを使って最適化します。
@@ -115,6 +191,24 @@ LCP の警告が出たのはホームページの[スライド画像](/my-app/sr
 // 最初の画像を優先します
 <Image priority={index === 0} />
 
+```
+
+- `next/image` Un-configured Host (エラー)
+
+`next/image`をで src に渡されるのが URL 場合`next.config.js`に`hostname`を入れる設定する必要が出てきます
+
+```:ruby
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: "site.assets.newt.so",
+      },
+    ],
+  },
+};
+
+export default nextConfig;
 ```
 
 ## 出来なかったこと
