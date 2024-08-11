@@ -16,10 +16,20 @@ import {
 import { ShoppingBag, ShoppingCart } from "lucide-react";
 
 // test
-import { ProductData } from "@/datatest/product-data";
+// import { ProductData } from "@/datatest/product-data";
 
-export const Product = () => {
-  const item = ProductData[0];
+// type
+import { ProductProps } from "@/types/types";
+
+type ProductDataProps = {
+  item: ProductProps | undefined;
+};
+
+export const Product = ({ item }: ProductDataProps) => {
+  if (!item) {
+    return <div>商品が見つかりません。</div>;
+  }
+
   return (
     <>
       <Container>
@@ -29,14 +39,14 @@ export const Product = () => {
             <div className="h-[300px] sm:h-[450px] border shadow-xl bg-gray-300">
               <Image
                 src={item.image}
-                alt={item.name}
+                alt={item.title}
                 className="h-[300px] sm:h-[450px] object-cover"
               />
             </div>
             {/* タイトル */}
             <div className="flex items-center justify-between my-6">
-              <Info title={item.name} />
-              <p className="font-bold">{item.price}円</p>
+              <Info title={item.title} />
+              <p className="font-bold">{item?.price}円</p>
             </div>
             {/* 説明 */}
             <p>{item.description}</p>
@@ -50,7 +60,7 @@ export const Product = () => {
                   <SelectContent className="bg-white border min-w-[80px]">
                     <SelectItem value="light">1</SelectItem>
                     <SelectItem value="dark">2</SelectItem>
-                    <SelectItem value="system">3</SelectItem>
+                    <SelectItem value="sysatem">3</SelectItem>
                   </SelectContent>
                 </Select>
                 {/* 選択した数だけプラス */}
