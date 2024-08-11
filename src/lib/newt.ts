@@ -1,4 +1,4 @@
-// import "server-only";
+import "server-only";
 import { createClient } from "newt-client-js";
 
 export const NewtClient = createClient({
