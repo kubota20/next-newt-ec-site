@@ -30,11 +30,11 @@ const CategoriesPage = () => {
           </div>
 
           {/* 商品カード */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+          {/* <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
             {ProductData.map((item) => (
               <ProductCard key={item.id} item={item} />
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* ページネーション */}
