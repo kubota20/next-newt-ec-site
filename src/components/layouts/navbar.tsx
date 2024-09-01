@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/elements/sheet";
+} from "@/components/shadcnUi/sheet";
 import { MainNav } from "@/components/layouts/main-nav";
 
 export const Navbar = () => {
