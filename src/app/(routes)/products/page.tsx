@@ -2,7 +2,8 @@
 // import { ProductData } from "@/datatest/product-data";
 
 // actions
-import { getProducts } from "@/actions/get-products";
+import { getProductList } from "@/actions/get-products";
+import { getCategory } from "@/actions/get-categories";
 
 // features
 import { ProductCard } from "@/features/products/product-card";
@@ -22,19 +23,21 @@ import { CategorySelect } from "@/components/elements/category-select";
 import { TitleSearch } from "@/components/elements/title-search";
 
 const ProductsPage = async () => {
-  const productData = await getProducts();
+  const productData = await getProductList();
+
+  const categoryData = await getCategory();
 
   return (
     <div className="flex flex-col bg-[rgb(248,248,248)]">
-      <Container>
-        <div className="my-32">
+      <div className="my-32">
+        <Container>
           <div className="flex items-center justify-between my-16">
             <div className="w-full">
               <h2 className="font-bold text-3xl text-center">商品</h2>
             </div>
             <div className="flex items-center gap-2">
-              <CategorySelect />
-              <TitleSearch />
+              <CategorySelect catItem={categoryData} />
+              <TitleSearch productData={productData} />
             </div>
           </div>
 
@@ -44,28 +47,28 @@ const ProductsPage = async () => {
               <ProductCard key={item._id} item={item} />
             ))}
           </div>
-        </div>
+        </Container>
+      </div>
 
-        {/* ページネーション */}
-        <div className="mb-10">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="#" />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext href="#" />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
-      </Container>
+      {/* ページネーション */}
+      <div className="mb-10">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   );
 };
