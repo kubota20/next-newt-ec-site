@@ -1,5 +1,5 @@
 // components
-import Container from "@/components/elements/container";
+import Container from "@/components/container";
 
 // features
 import { NewsBox } from "@/features/news/news-box";

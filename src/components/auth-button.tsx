@@ -13,7 +13,7 @@ import { auth } from "@clerk/nextjs/server";
 import { LogIn } from "lucide-react";
 
 // components
-import { UserLoading } from "@/components/elements/loadings/user-loading";
+import { UserLoading } from "@/components/loadings/user-loading";
 
 export const AuthButton = () => {
   const { userId } = auth();

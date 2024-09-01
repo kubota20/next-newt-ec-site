@@ -10,7 +10,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/elements/popover";
+} from "@/components/shadcnUi/popover";
 import {
   Command,
   CommandEmpty,
@@ -18,8 +18,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/elements/command";
-import { Button } from "@/components/elements/button";
+} from "@/components/shadcnUi/command";
+import { Button } from "@/components/shadcnUi/button";
 
 // icon
 import { Search } from "lucide-react";

@@ -4,7 +4,7 @@ import Link from "next/link";
 import NewsImage from "@/features/home/news-image";
 
 // components
-import Container from "@/components/elements/container";
+import Container from "@/components/container";
 import { NewsBox } from "@/features/news/news-box";
 
 // test

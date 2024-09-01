@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 // components
-import Container from "@/components/elements/container";
+import Container from "@/components/container";
 import { ProductCard } from "@/features/products/product-card";
-import { Info } from "@/components/elements/info";
+import { Info } from "@/components/info";
 
 // actions
 import { getProductList } from "@/actions/get-products";

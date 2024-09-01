@@ -1,16 +1,16 @@
 import Image from "next/image";
 
 // components
-import Container from "@/components/elements/container";
-import { Button } from "@/components/elements/button";
-import { Info } from "@/components/elements/info";
+import Container from "@/components/container";
+import { Button } from "@/components/shadcnUi/button";
+import { Info } from "@/components/info";
 import {
   Select,
   SelectItem,
   SelectTrigger,
   SelectValue,
   SelectContent,
-} from "@/components/elements/select";
+} from "@/components/shadcnUi/select";
 
 // icon
 import { ShoppingBag, ShoppingCart } from "lucide-react";

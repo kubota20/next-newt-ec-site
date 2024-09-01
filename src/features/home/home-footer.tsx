@@ -5,7 +5,7 @@ import Footer1 from "@/images/footer1.jpg";
 import Footer2 from "@/images/footer2.jpg";
 
 // components
-import { Button } from "@/components/elements/button";
+import { Button } from "@/components/shadcnUi/button";
 
 const Footer = () => {
   return (

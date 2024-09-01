@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 // components
-import { Button } from "@/components/elements/button";
+import { Button } from "@/components/shadcnUi/button";
 import {
   Form,
   FormControl,
@@ -13,9 +13,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/elements/form";
-import { Input } from "@/components/elements/input";
-import { Textarea } from "@/components/elements/textarea";
+} from "@/components/shadcnUi/form";
+import { Input } from "@/components/shadcnUi/input";
+import { Textarea } from "@/components/shadcnUi/textarea";
 
 const formSchema = z.object({
   username: z

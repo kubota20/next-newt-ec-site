@@ -9,7 +9,7 @@ import { getCategory } from "@/actions/get-categories";
 import { ProductCard } from "@/features/products/product-card";
 
 // components
-import Container from "@/components/elements/container";
+import Container from "@/components/container";
 import {
   Pagination,
   PaginationContent,
@@ -18,9 +18,9 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/elements/pagination";
-import { CategorySelect } from "@/components/elements/category-select";
-import { TitleSearch } from "@/components/elements/title-search";
+} from "@/components/shadcnUi/pagination";
+import { CategorySelect } from "@/components/category-select";
+import { TitleSearch } from "@/components/title-search";
 
 const ProductsPage = async () => {
   const productData = await getProductList();

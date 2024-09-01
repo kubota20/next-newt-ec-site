@@ -1,5 +1,5 @@
 // components
-import Container from "@/components/elements/container";
+import Container from "@/components/container";
 
 // features
 import { CartList } from "@/features/carts/cart-list";

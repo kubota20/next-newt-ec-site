@@ -2,9 +2,9 @@
 import { ProductCard } from "@/features/products/product-card";
 
 // components
-import Container from "@/components/elements/container";
-import { CategorySelect } from "@/components/elements/category-select";
-import { TitleSearch } from "@/components/elements/title-search";
+import Container from "@/components/container";
+import { CategorySelect } from "@/components/category-select";
+import { TitleSearch } from "@/components/title-search";
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +13,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/elements/pagination";
+} from "@/components/shadcnUi/pagination";
 
 // actions
 import { getProductList } from "@/actions/get-products";
