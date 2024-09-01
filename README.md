@@ -213,7 +213,7 @@ export default nextConfig;
 
 ### Style
 
-[カテゴリ選択](/my-app/src/components/elements/category-select.tsx)で何故か`ノンフィクション`を選択すると商品カードのスタイルがおかしい事に、他の選択しても問題なし。
+[カテゴリ選択](/my-app/src/components/shadcnUi/category-select.tsx)で何故か`ノンフィクション`を選択すると商品カードのスタイルがおかしい事に、他の選択しても問題なし。
 
 解決しました。
 
@@ -230,7 +230,7 @@ export default nextConfig;
 ### Clerk
 
 `Clerk`の`<AuthButton/>`を 640px 以内で表示される`Navbar`に追加してみたが、Clerk のモーダルは表示されるがサインインもサインアウトも出来ない。
-理由も分からず難航した為[Navbar](/my-app/src/components/layouts/navbar.tsx)での[<AuthButton/>](/my-app/src/components/elements/auth-button.tsx)を入れるのをやめました。
+理由も分からず難航した為[Navbar](/my-app/src/components/layouts/navbar.tsx)での[<AuthButton/>](/my-app/src/components/shadcnUi/auth-button.tsx)を入れるのをやめました。
 
 ## Vitest
 
