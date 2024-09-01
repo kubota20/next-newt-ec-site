@@ -211,6 +211,14 @@ const nextConfig = {
 export default nextConfig;
 ```
 
+### Style
+
+[カテゴリ選択](/my-app/src/components/elements/category-select.tsx)で何故か`ノンフィクション`を選択すると商品カードのスタイルがおかしい事に、他の選択しても問題なし。
+
+解決しました。
+
+問題はカテゴリページの Container の位置が間違っていました。`Pagination`まで入れてたのを 商品カードまでに修正しました。
+
 ## 出来なかったこと
 
 ### figma
