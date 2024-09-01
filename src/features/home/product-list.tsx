@@ -6,13 +6,13 @@ import { ProductCard } from "@/features/products/product-card";
 import { Info } from "@/components/elements/info";
 
 // actions
-import { getProducts } from "@/actions/get-products";
+import { getProductList } from "@/actions/get-products";
 
 // test
 // import { ProductData } from "@/datatest/product-data";
 
 const ProductList = async () => {
-  const ProductData = await getProducts();
+  const ProductData = await getProductList();
   return (
     <section className="bg-[rgb(248,248,248)]">
       <Container>

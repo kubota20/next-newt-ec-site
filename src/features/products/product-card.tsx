@@ -35,7 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
           <Image
             src={item.image}
             alt={item.title}
-            className="object-cover rounded-full w-full h-32 lg:h-52 "
+            className="object-cover  w-full h-32 lg:h-52 "
           />
 
           {/* 640px以上ならボタンはHover時に表示 , 640px以内ならボタンは最初から表示*/}
