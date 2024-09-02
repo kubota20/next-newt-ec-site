@@ -2,7 +2,7 @@
 import Container from "@/components/container";
 
 // features
-import { NewsBox } from "@/features/news/news-box";
+import { NewsBox } from "@/components/news-box";
 
 // test
 import { NewsData } from "@/datatest/news-data";
