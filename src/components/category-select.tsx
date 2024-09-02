@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/shadcnUi/select";
+} from "@/components/ui/select";
 
 // types
 import { CategoryProps } from "@/types/types";

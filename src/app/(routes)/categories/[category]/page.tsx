@@ -13,7 +13,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/shadcnUi/pagination";
+} from "@/components/ui/pagination";
 
 // actions
 import { getProductList } from "@/actions/get-products";

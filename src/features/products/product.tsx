@@ -2,7 +2,7 @@ import Image from "next/image";
 
 // components
 import Container from "@/components/container";
-import { Button } from "@/components/shadcnUi/button";
+import { Button } from "@/components/ui/button";
 import { Info } from "@/components/info";
 import {
   Select,
@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
   SelectContent,
-} from "@/components/shadcnUi/select";
+} from "@/components/ui/select";
 
 // icon
 import { ShoppingBag, ShoppingCart } from "lucide-react";

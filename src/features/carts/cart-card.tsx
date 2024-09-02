@@ -11,15 +11,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/shadcnUi/card";
+} from "@/components/ui/card";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/shadcnUi/select";
-import { Button } from "@/components/shadcnUi/button";
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 interface CartCardProps {
   item: ProductDataProps;

@@ -9,7 +9,7 @@ import Image from "next/image";
 import { ProductProps } from "@/types/types";
 
 // components
-import { Button } from "@/components/shadcnUi/button";
+import { Button } from "@/components/ui/button";
 
 // icon
 import { ChevronRight, ShoppingCart } from "lucide-react";

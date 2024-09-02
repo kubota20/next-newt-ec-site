@@ -1,5 +1,5 @@
 // components
-import { Button } from "@/components/shadcnUi/button";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (

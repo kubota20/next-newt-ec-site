@@ -18,7 +18,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/shadcnUi/pagination";
+} from "@/components/ui/pagination";
 import { CategorySelect } from "@/components/category-select";
 import { TitleSearch } from "@/components/title-search";
 

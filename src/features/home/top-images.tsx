@@ -7,12 +7,12 @@ import Image from "next/image";
 import { TopData } from "@/datatest/top-data";
 
 // components
-import { Button } from "@/components/shadcnUi/button";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/shadcnUi/carousel";
+} from "@/components/ui/carousel";
 
 // プラグインURL　https://www.embla-carousel.com/plugins/autoplay/
 import Autoplay from "embla-carousel-autoplay";
