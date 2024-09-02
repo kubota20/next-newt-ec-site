@@ -5,7 +5,7 @@ import NewsImage from "@/features/home/news-image";
 
 // components
 import Container from "@/components/container";
-import { NewsBox } from "@/features/news/news-box";
+import { NewsBox } from "@/components/news-box";
 
 // test
 import { NewsData } from "@/datatest/news-data";
