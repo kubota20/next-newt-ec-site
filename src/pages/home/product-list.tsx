@@ -2,7 +2,7 @@ import Link from "next/link";
 
 // components
 import Container from "@/components/ui/container";
-import { ProductCard } from "@/pages/products/product-card";
+import { ProductCard } from "@/components/product-card";
 import { Info } from "@/components/ui/info";
 
 // actions
