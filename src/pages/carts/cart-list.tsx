@@ -1,5 +1,5 @@
 // features
-import { CartCard } from "@/features/carts/cart-card";
+import { CartCard } from "@/pages/carts/cart-card";
 
 // test
 import { ProductData } from "@/datatest/product-data";

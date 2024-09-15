@@ -2,7 +2,7 @@
 import Container from "@/components/ui/container";
 
 // features
-import ContactForm from "@/features/contact/contact-form";
+import ContactForm from "@/pages/contact/contact-form";
 
 const ContactPage = () => {
   return (

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // features
-import NewsImage from "@/features/home/news-image";
+import NewsImage from "@/pages/home/news-image";
 
 // components
 import Container from "@/components/ui/container";

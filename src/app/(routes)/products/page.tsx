@@ -6,7 +6,7 @@ import { getProductList } from "@/actions/get-products";
 import { getCategory } from "@/actions/get-categories";
 
 // features
-import { ProductCard } from "@/features/products/product-card";
+import { ProductCard } from "@/pages/products/product-card";
 
 // components
 import Container from "@/components/ui/container";

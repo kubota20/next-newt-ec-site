@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getProductList, getProductById } from "@/actions/get-products";
 
 // features
-import { Product } from "@/features/products/product";
+import { Product } from "@/pages/products/product";
 
 type Props = {
   params: {

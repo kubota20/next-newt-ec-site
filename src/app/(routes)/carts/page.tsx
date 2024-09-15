@@ -2,7 +2,7 @@
 import Container from "@/components/ui/container";
 
 // features
-import { CartList } from "@/features/carts/cart-list";
+import { CartList } from "@/pages/carts/cart-list";
 
 const CartsPage = () => {
   return (

@@ -1,7 +1,7 @@
-import EventNews from "@/features/home/event-news";
-import ProductList from "@/features/home/product-list";
-import TopSlides from "@/features/home/top-slides";
-import Footer from "@/features/home/home-footer";
+import EventNews from "@/pages/home/event-news";
+import ProductList from "@/pages/home/product-list";
+import TopSlides from "@/pages/home/top-slides";
+import Footer from "@/pages/home/home-footer";
 
 const HomePage = () => {
   return (
