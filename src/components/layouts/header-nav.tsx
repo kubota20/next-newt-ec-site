@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // components
-import Container from "@/components/container";
+import Container from "@/components/ui/container";
 import { AuthButton } from "@/components/auth-button";
 import { MainNav } from "@/components/layouts/main-nav";
 import { Navbar } from "@/components/layouts/navbar";

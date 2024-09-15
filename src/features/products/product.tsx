@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 // components
-import Container from "@/components/container";
+import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Info } from "@/components/info";
+import { Info } from "@/components/ui/info";
 import {
   Select,
   SelectItem,

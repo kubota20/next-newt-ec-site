@@ -9,7 +9,7 @@ import { getCategory } from "@/actions/get-categories";
 import { ProductCard } from "@/features/products/product-card";
 
 // components
-import Container from "@/components/container";
+import Container from "@/components/ui/container";
 import {
   Pagination,
   PaginationContent,

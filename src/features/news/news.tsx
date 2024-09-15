@@ -1,6 +1,6 @@
 // components
-import Container from "@/components/container";
-import { Info } from "@/components/info";
+import Container from "@/components/ui/container";
+import { Info } from "@/components/ui/info";
 
 // test
 import { NewsData } from "@/datatest/news-data";

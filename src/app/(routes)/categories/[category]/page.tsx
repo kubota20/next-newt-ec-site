@@ -2,7 +2,7 @@
 import { ProductCard } from "@/features/products/product-card";
 
 // components
-import Container from "@/components/container";
+import Container from "@/components/ui/container";
 import { CategorySelect } from "@/components/category-select";
 import { TitleSearch } from "@/components/title-search";
 import {
