@@ -1,5 +1,6 @@
 "use client";
 
+import { MouseEventHandler } from "react";
 import Image from "next/image";
 
 // test
@@ -15,16 +16,24 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+// hooks
+import { useCart } from "@/hooks/use-cart";
+
 interface ProductCardProps {
   item: ProductProps;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
+  const cart = useCart();
   const router = useRouter();
 
   const handleClick = () => {
     router.push(`/products/${item._id}
 `);
+  };
+
+  const onAddtoCart: MouseEventHandler<HTMLButtonElement> = () => {
+    cart.addItem(item);
   };
 
   return (
@@ -41,9 +50,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
           {/* 640px以上ならボタンはHover時に表示 , 640px以内ならボタンは最初から表示*/}
           <div className="opacity-0 max-sm:opacity-100 sm:group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
             <div className="flex gap-x-6 justify-center">
-              <Button size="icon" className="size-7 md:size-8 lg:size-10">
+              {/* カートの追加ボタン */}
+              <Button
+                size="icon"
+                className="size-7 md:size-8 lg:size-10"
+                onClick={onAddtoCart}
+              >
                 <ShoppingCart size={20} className="text-gray-600" />
               </Button>
+
+              {/* 商品ページボタン */}
               <Button
                 size="icon"
                 className="size-7 md:size-8 lg:size-10"
