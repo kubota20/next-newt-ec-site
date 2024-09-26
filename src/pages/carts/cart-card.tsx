@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // test
-import { ProductDataProps } from "@/datatest/product-data";
+// import { ProductDataProps } from "@/datatest/product-data";
 
 // components
 import {
@@ -21,11 +21,20 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
+// type
+import { ProductProps } from "@/types/types";
+import { useCart } from "@/hooks/use-cart";
+
 interface CartCardProps {
-  item: ProductDataProps;
+  item: ProductProps;
 }
 
 export const CartCard: React.FC<CartCardProps> = ({ item }) => {
+  const cart = useCart();
+
+  const onRemove = () => {
+    cart.removeItem(item._id);
+  };
   return (
     <div>
       <Card className="">
@@ -33,13 +42,13 @@ export const CartCard: React.FC<CartCardProps> = ({ item }) => {
           <div className="bg-gray-300 w-[180px] h-[230px]  sm:w-[320px] sm:h-[340px]">
             <Image
               src={item.image}
-              alt={item.name}
+              alt={item.title}
               className="object-cover h-full w-full border-r"
             />
           </div>
           <div className="flex flex-col justify-between w-full">
             <CardHeader>
-              <CardTitle>{item.name}</CardTitle>
+              <CardTitle>{item.title}</CardTitle>
               <CardDescription className="text-xs">
                 {item.description}
               </CardDescription>
@@ -60,7 +69,9 @@ export const CartCard: React.FC<CartCardProps> = ({ item }) => {
                   <SelectItem value="system">3</SelectItem>
                 </SelectContent>
               </Select>
-              <Button variant="destructive">削除</Button>
+              <Button onClick={onRemove} variant="destructive">
+                削除
+              </Button>
             </CardFooter>
           </div>
         </div>
