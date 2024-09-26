@@ -1,3 +1,6 @@
+"use client";
+
+import { MouseEventHandler } from "react";
 import Image from "next/image";
 
 // components
@@ -21,14 +24,22 @@ import { ShoppingBag, ShoppingCart } from "lucide-react";
 // type
 import { ProductProps } from "@/types/types";
 
+// hooks
+import { useCart } from "@/hooks/use-cart";
+
 type ProductDataProps = {
   item: ProductProps | undefined;
 };
 
 export const Product = ({ item }: ProductDataProps) => {
+  const cart = useCart();
+
   if (!item) {
     return <div>商品が見つかりません。</div>;
   }
+  const onAddtoCart: MouseEventHandler<HTMLButtonElement> = () => {
+    cart.addItem(item);
+  };
 
   return (
     <>
@@ -68,11 +79,11 @@ export const Product = ({ item }: ProductDataProps) => {
               </div>
               {/* 注文、カートボタン */}
               <div className="flex items-center justify-center gap-4 mt-10">
-                <Button className="border  gap-2">
+                <Button className="border gap-2">
                   <ShoppingBag />
                   注文する
                 </Button>
-                <Button className="border  gap-2">
+                <Button className="border gap-2" onClick={onAddtoCart}>
                   <ShoppingCart />
                   カートに追加
                 </Button>
