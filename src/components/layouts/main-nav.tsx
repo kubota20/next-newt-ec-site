@@ -8,14 +8,14 @@ export const MainNav = () => {
       active: `/products`,
     },
     {
-      href: `/carts`,
-      label: "カート",
-      active: `/carts`,
-    },
-    {
       href: `/news`,
       label: "イベント",
       active: `/news`,
+    },
+    {
+      href: `/carts`,
+      label: "カート",
+      active: `/cart`,
     },
     {
       href: `/contact`,

@@ -30,7 +30,7 @@ export const CategorySelect = ({ catItem }: CategorySelectProps) => {
     router.push(`/categories/${value}`);
   };
 
-  const currentCategory = catItem.find((cat) => cat._id === params.category);
+  const currentCategory = catItem.find((cat) => cat._id === params?.category);
 
   return (
     <div>
