@@ -229,8 +229,9 @@ export default nextConfig;
 
 ### Clerk
 
-`Clerk`の`<AuthButton/>`を 640px 以内で表示される`Navbar`に追加してみたが、Clerk のモーダルは表示されるがサインインもサインアウトも出来ない。
-理由も分からず難航した為[Navbar](/my-app/src/components/layouts/navbar.tsx)での[<AuthButton/>](/my-app/src/components/ui/auth-button.tsx)を入れるのをやめました。
+#### 1. プロフィールのカスタマイズ
+
+`<UserButton/>`コンポーネントのプロフィール UI のユーザ名の姓名が英語用の表示順になってたので順番をカスタマイズしようとしたが、そもそも`UserButton`のプロフィールをカスタマイズは難しい、やり方は`プロフィールページを作成`する所からやらないと行けなくコード量が増える為断念。プロフィール UI が提供されているのでそのまま使用します。
 
 ## Vitest
 
