@@ -15,12 +15,16 @@ import { useCart } from "@/hooks/use-cart";
 // lib
 import { cn } from "@/lib/utils";
 
+// clerk
+import { useAuth } from "@clerk/nextjs";
+
 type CartButtonProps = {
   className?: string;
 };
 
 const CartButton = ({ className }: CartButtonProps) => {
   const [isMounted, setIsMounted] = useState(false);
+  const { isSignedIn } = useAuth();
 
   useEffect(() => {
     setIsMounted(true);
@@ -30,6 +34,11 @@ const CartButton = ({ className }: CartButtonProps) => {
   const cart = useCart();
 
   if (!isMounted) {
+    return null;
+  }
+
+  // ログインしてない場合このボタンは非表示になります。
+  if (!isSignedIn) {
     return null;
   }
 
