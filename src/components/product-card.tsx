@@ -17,14 +17,15 @@ import { ChevronRight, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 // hooks
-import { useCart } from "@/hooks/use-cart";
+
+import { useAuthenticatedCart } from "@/hooks/useAuthenticatedCart";
 
 interface ProductCardProps {
   item: ProductProps;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
-  const cart = useCart();
+  const cart = useAuthenticatedCart();
   const router = useRouter();
 
   const handleClick = () => {
