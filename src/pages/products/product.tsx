@@ -23,7 +23,7 @@ import { ProductProps } from "@/types/types";
 import Currency from "@/components/ui/currency";
 
 // clerk
-import { useAuthenticatedCart } from "@/hooks/useAuthenticatedCart";
+import { useAuthenticatedCart } from "@/hooks/use-authenticated-cart";
 
 type ProductDataProps = {
   item: ProductProps | undefined;
