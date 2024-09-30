@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 
 // hooks
 
-import { useAuthenticatedCart } from "@/hooks/useAuthenticatedCart";
+import { useAuthenticatedCart } from "@/hooks/use-authenticated-cart";
 
 interface ProductCardProps {
   item: ProductProps;
