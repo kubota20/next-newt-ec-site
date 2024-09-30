@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 // test
@@ -12,17 +15,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import Currency from "@/components/ui/currency";
+import QuantitySelection from "@/components/ui/quantity-selection";
 
 // type
 import { ProductProps } from "@/types/types";
+
+// hooks
 import { useCart } from "@/hooks/use-cart";
 
 interface CartCardProps {
@@ -30,11 +30,14 @@ interface CartCardProps {
 }
 
 export const CartCard: React.FC<CartCardProps> = ({ item }) => {
+  const [quantity, setQuantity] = useState(1);
   const cart = useCart();
 
+  // 商品を削除する関数
   const onRemove = () => {
     cart.removeItem(item._id);
   };
+
   return (
     <div>
       <Card className="">
@@ -54,21 +57,15 @@ export const CartCard: React.FC<CartCardProps> = ({ item }) => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div>合計:{item.price}</div>
+              <div>
+                合計:
+                <Currency value={item.price * quantity} />
+              </div>
             </CardContent>
 
             <CardFooter className="flex items-center justify-around gap-2">
               {/* 個数選択 */}
-              <Select>
-                <SelectTrigger className="w-[80px]">
-                  <SelectValue placeholder="個数" />
-                </SelectTrigger>
-                <SelectContent className="bg-white min-w-[60px]">
-                  <SelectItem value="light">1</SelectItem>
-                  <SelectItem value="dark">2</SelectItem>
-                  <SelectItem value="system">3</SelectItem>
-                </SelectContent>
-              </Select>
+              <QuantitySelection setQuantity={setQuantity} />
               <Button onClick={onRemove} variant="destructive">
                 削除
               </Button>

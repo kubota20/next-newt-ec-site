@@ -1,19 +1,13 @@
 "use client";
 
-import { MouseEventHandler } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 // components
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Info } from "@/components/ui/info";
-import {
-  Select,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-} from "@/components/ui/select";
+import QuantitySelection from "@/components/ui/quantity-selection";
 
 // icon
 import { ShoppingBag, ShoppingCart } from "lucide-react";
@@ -22,21 +16,27 @@ import { ShoppingBag, ShoppingCart } from "lucide-react";
 // import { ProductData } from "@/datatest/product-data";
 
 // type
+import type { MouseEventHandler } from "react";
 import { ProductProps } from "@/types/types";
 
 // hooks
-import { useCart } from "@/hooks/use-cart";
+import Currency from "@/components/ui/currency";
+
+// clerk
+import { useAuthenticatedCart } from "@/hooks/useAuthenticatedCart";
 
 type ProductDataProps = {
   item: ProductProps | undefined;
 };
 
 export const Product = ({ item }: ProductDataProps) => {
-  const cart = useCart();
+  const [quantity, setQuantity] = useState(1);
+  const cart = useAuthenticatedCart();
 
   if (!item) {
     return <div>商品が見つかりません。</div>;
   }
+
   const onAddtoCart: MouseEventHandler<HTMLButtonElement> = () => {
     cart.addItem(item);
   };
@@ -62,20 +62,13 @@ export const Product = ({ item }: ProductDataProps) => {
             {/* 説明 */}
             <p>{item.description}</p>
             <div className="bg-gray-100 p-2 my-4">
-              <div className="flex items-center gap-2 ">
-                {/* 個数選択 */}
-                <Select>
-                  <SelectTrigger className="w-[80px] bg-white">
-                    <SelectValue placeholder="個数" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white border min-w-[80px]">
-                    <SelectItem value="light">1</SelectItem>
-                    <SelectItem value="dark">2</SelectItem>
-                    <SelectItem value="sysatem">3</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="flex items-center justify-around gap-2 ">
                 {/* 選択した数だけプラス */}
-                <p>合計{item.price}円</p>
+                <p className="flex">
+                  合計: <Currency value={item.price * quantity} />
+                </p>
+                {/* 個数選択 */}
+                <QuantitySelection setQuantity={setQuantity} />
               </div>
               {/* 注文、カートボタン */}
               <div className="flex items-center justify-center gap-4 mt-10">
