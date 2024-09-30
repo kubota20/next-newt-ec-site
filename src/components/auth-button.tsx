@@ -7,7 +7,7 @@ import {
   ClerkLoading,
   ClerkLoaded,
 } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 // icon
 import { LogIn } from "lucide-react";
@@ -15,14 +15,15 @@ import { LogIn } from "lucide-react";
 // components
 import { UserLoading } from "@/components/loadings/user-loading";
 
-export const AuthButton = () => {
+export const AuthButton = async () => {
+  const user = await currentUser();
   const { userId } = auth();
 
   if (!userId) {
     return (
       <>
         <SignUpButton mode="modal">
-          <p className="hover:text-slate-600 hover:cursor-pointer">SignUp</p>
+          <p className="hover:text-slate-600 hover:cursor-pointer">会員登録</p>
         </SignUpButton>
         <SignInButton mode="modal">
           <p className="hover:text-slate-600 hover:cursor-pointer">
@@ -32,6 +33,7 @@ export const AuthButton = () => {
       </>
     );
   }
+
   return (
     <>
       {/* ロード中に表示 */}

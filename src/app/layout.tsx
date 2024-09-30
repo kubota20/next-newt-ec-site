@@ -8,11 +8,11 @@ import "./globals.css";
 
 // components
 import HeaderNav from "@/components/layouts/header-nav";
+import CartAction from "@/components/layouts/cart-action";
 
 // clerk 認証機能
 import { ClerkProvider } from "@clerk/nextjs";
 import { jaJP } from "@clerk/localizations"; // 日本言語を取得
-import CartAction from "@/components/layouts/cart-action";
 
 const inter = Noto_Sans_JP({ subsets: ["latin"] });
 

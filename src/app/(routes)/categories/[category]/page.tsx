@@ -1,5 +1,5 @@
 // features
-import { ProductCard } from "@/pages/products/product-card";
+import { ProductCard } from "@/components/product-card";
 
 // components
 import Container from "@/components/ui/container";
@@ -17,11 +17,7 @@ import {
 
 // actions
 import { getProductList } from "@/actions/get-products";
-import {
-  getCategory,
-  getCategoryList,
-  getProductsByCategory,
-} from "@/actions/get-categories";
+import { getCategory, getProductsByCategory } from "@/actions/get-categories";
 
 // test
 // import { ProductData } from "@/datatest/product-data";
