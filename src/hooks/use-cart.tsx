@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 
 interface CartProps {
   items: ProductProps[];
-  addItem: (item: ProductProps) => void;
+  addItem: (item: ProductProps, isSignedIn: boolean) => void;
   removeItem: (id: string) => void;
   removeAll: () => void;
 }
@@ -21,7 +21,10 @@ export const useCart = create(
       items: [],
 
       // カート追加
-      addItem: (item: ProductProps) => {
+      addItem: (item: ProductProps, isSignedIn: boolean) => {
+        if (!isSignedIn) {
+          return toast.error("カートに商品を追加するにはログインしてください");
+        }
         const currentItems = get().items;
         // currentItems配列にあるidと渡されたitemのidが一致した時にイベントを起こす
         const existingItem = currentItems.find(
@@ -36,7 +39,7 @@ export const useCart = create(
         toast.success("カートに追加しました");
       },
 
-      // カート削除
+      // 削除
       removeItem: (id: string) => {
         // Product配列にあるidとremoveItemにあるidが違えばイベントを起こす
         set({ items: [...get().items.filter((item) => item._id !== id)] });
@@ -44,7 +47,10 @@ export const useCart = create(
       },
 
       // カートの全削除
-      removeAll: () => set({ items: [] }),
+      removeAll: () => {
+        set({ items: [] });
+        toast.success("カートを空にしました");
+      },
     }),
     {
       name: "cart-storage",
