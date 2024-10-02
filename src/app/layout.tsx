@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 
+// providers
 import ToastProvider from "@/providers/toast-providers";
+import ModalProvider from "@/providers/modal-provider";
 
 // styles
 import "./globals.css";
@@ -33,6 +35,7 @@ export default function RootLayout({
           <HeaderNav />
           {children}
           <CartAction />
+          <ModalProvider />
           <ToastProvider />
         </body>
       </html>
