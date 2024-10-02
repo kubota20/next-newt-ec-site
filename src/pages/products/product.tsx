@@ -8,6 +8,7 @@ import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Info } from "@/components/ui/info";
 import QuantitySelection from "@/components/ui/quantity-selection";
+import Currency from "@/components/ui/currency";
 
 // icon
 import { ShoppingBag, ShoppingCart } from "lucide-react";
@@ -20,9 +21,7 @@ import type { MouseEventHandler } from "react";
 import { ProductProps } from "@/types/types";
 
 // hooks
-import Currency from "@/components/ui/currency";
-
-// clerk
+import { useOrderModal } from "@/hooks/use-order-modal";
 import { useAuthenticatedCart } from "@/hooks/use-authenticated-cart";
 
 type ProductDataProps = {
@@ -32,10 +31,15 @@ type ProductDataProps = {
 export const Product = ({ item }: ProductDataProps) => {
   const [quantity, setQuantity] = useState(1);
   const cart = useAuthenticatedCart();
+  const orderModal = useOrderModal();
 
   if (!item) {
     return <div>商品が見つかりません。</div>;
   }
+
+  const onOrder: MouseEventHandler<HTMLButtonElement> = () => {
+    orderModal.onOpen(item);
+  };
 
   const onAddtoCart: MouseEventHandler<HTMLButtonElement> = () => {
     cart.addItem(item);
@@ -72,7 +76,7 @@ export const Product = ({ item }: ProductDataProps) => {
               </div>
               {/* 注文、カートボタン */}
               <div className="flex items-center justify-center gap-4 mt-10">
-                <Button className="border gap-2">
+                <Button className="border gap-2" onClick={onOrder}>
                   <ShoppingBag />
                   注文する
                 </Button>
