@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // components
 import {
   Dialog,
@@ -10,11 +12,15 @@ import {
 // lib
 import { cn } from "@/lib/utils";
 
+// type
+import { ImageProps } from "@/types/types";
+
 interface ModalProps {
   title: string;
   description: string;
   isOpen: boolean;
   onClose: () => void;
+  image: ImageProps | null;
   children?: React.ReactNode;
 }
 
@@ -24,6 +30,7 @@ export const Modal = ({
   isOpen,
   onClose,
   children,
+  image = null,
 }: ModalProps) => {
   const onChange = (open: boolean) => {
     if (!open) {
@@ -33,9 +40,18 @@ export const Modal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
-      <DialogContent>
+      <DialogContent className="bg-white">
         <DialogHeader>
-          <div className={cn("text-center")}>
+          {image && (
+            <div className="h-[300px] sm:h-[450px] border shadow-xl bg-gray-300">
+              <Image
+                src={image}
+                alt={title}
+                className="h-[300px] sm:h-[450px] object-cover"
+              />
+            </div>
+          )}
+          <div className={cn("text-cente p-2")}>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
           </div>
