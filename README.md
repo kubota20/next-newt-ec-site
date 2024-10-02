@@ -229,7 +229,12 @@ export default nextConfig;
 
 ### Clerk
 
-#### 1. プロフィールのカスタマイズ
+#### 1
+
+`<AuthButton/>`を `layouts/navbar.tsx`に追加してみたが、Clerk のモーダルは表示されるが`アカウント管理やサインアウトなどクリックしても表示されない`。
+理由も分からず難航した為[Navbar](/my-app/src/components/layouts/navbar.tsx)での[<AuthButton/>](/my-app/src/components/auth-button.tsx)を入れるのをやめました。
+
+#### 2. プロフィールのカスタマイズ
 
 `<UserButton/>`コンポーネントのプロフィール UI のユーザ名の姓名が英語用の表示順になってたので順番をカスタマイズしようとしたが、そもそも`UserButton`のプロフィールをカスタマイズは難しい、やり方は`プロフィールページを作成`する所からやらないと行けなくコード量が増える為断念。プロフィール UI が提供されているのでそのまま使用します。
 

@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/sheet";
 import { MainNav } from "@/components/layouts/main-nav";
 import CartButton from "@/components/ui/cart-button";
-import { AuthButton } from "../auth-button";
 
 export const Navbar = () => {
   return (
@@ -30,7 +29,6 @@ export const Navbar = () => {
             </nav>
             <div className="mt-3 ml-auto flex items-center gap-x-4">
               <CartButton className="rounded-full bg-black px-4 py-2" />
-              <AuthButton />
             </div>
           </div>
         </SheetContent>
