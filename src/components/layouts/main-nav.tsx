@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export const MainNav = () => {
   const routes = [
     {
@@ -28,9 +26,9 @@ export const MainNav = () => {
     <>
       {routes.map((route) => (
         <p key={route.href}>
-          <Link href={route.href} className="hover:text-slate-600">
+          <a href={route.href} className="hover:text-slate-600">
             {route.label}
-          </Link>
+          </a>
         </p>
       ))}
     </>
