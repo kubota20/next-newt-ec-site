@@ -116,6 +116,17 @@ Newt での作成の流れは[ドキュメント](https://www.newt.so/docs/tutor
 
 ## 警告やエラーの対処
 
+### ビルドエラー
+
+- エラー内容 -
+  `@clerk/clerk-react: useAuth can only be used within the <ClerkProvider /> component. Learn more`
+
+- 原因 -
+  clerk の ClerkProvider か useAuth に問題があるとのこと、ClerkProvider をみるもちゃんと layout.tsx に入ってる。useAuth を使ってるファイルに`"use client"`を入れるも解決されず。問題は Next.js の App Router 構造に問題があリました。
+
+- 解決策 -
+  `src/pages`を`src/components/pages`にしました
+
 ### TypeScript
 
 - Newt (エラー)
@@ -184,7 +195,7 @@ Next.js 13 以降では使わないので`objectFitとlayout`プロパティは�
 - `Largest Contentful Paint (LCP)` (警告)
 
 `LCP`とはウェブページのメインコンテンツが読み込まれるまでの時間を測定するパフォーマンス指標です。
-LCP の警告が出たのはホームページの[スライド画像](/my-app/src/features/home/top-images.tsx)なので`next/iamge`で画像を自動的に最適化するには`priority`プロパティを使って最適化します。
+LCP の警告が出たのはホームページの[スライド画像](/my-app/src/components/pages/home/top-images.tsx)なので`next/iamge`で画像を自動的に最適化するには`priority`プロパティを使って最適化します。
 
 ```:ruby
 
