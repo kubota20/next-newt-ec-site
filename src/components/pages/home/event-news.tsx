@@ -1,11 +1,9 @@
 import Link from "next/link";
 
-// features
-import NewsImage from "@/pages/home/news-image";
-
 // components
 import Container from "@/components/ui/container";
 import { NewsBox } from "@/components/news-box";
+import NewsImage from "@/components/pages/home/news-image";
 
 // test
 import { NewsData } from "@/datatest/news-data";

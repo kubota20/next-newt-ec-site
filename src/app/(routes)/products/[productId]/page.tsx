@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
-
 // actions
 import { getProductList, getProductById } from "@/actions/get-products";
 
-// features
-import { Product } from "@/pages/products/product";
+// components
+import Product from "@/components/pages/products/product";
 
 type Props = {
   params: {
     productId: string;
   };
 };
+export const revalidate = 0;
 
 const ProductPage = async ({ params }: Props) => {
   const articles = await getProductList();

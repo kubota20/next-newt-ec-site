@@ -17,7 +17,7 @@ import {
 // プラグインURL　https://www.embla-carousel.com/plugins/autoplay/
 import Autoplay from "embla-carousel-autoplay";
 
-export const TopImages = () => {
+const TopImages = () => {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
 
   return (
@@ -59,3 +59,5 @@ export const TopImages = () => {
     </>
   );
 };
+
+export default TopImages;

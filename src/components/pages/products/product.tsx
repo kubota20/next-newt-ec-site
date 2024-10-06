@@ -22,15 +22,22 @@ import { ProductProps } from "@/types/types";
 
 // hooks
 import { useOrderModal } from "@/hooks/use-order-modal";
-import { useAuthenticatedCart } from "@/hooks/use-authenticated-cart";
+import { useCart } from "@/hooks/use-cart";
+
+// clerk
+import { useAuth } from "@clerk/nextjs";
+
+// toast
+import toast from "react-hot-toast";
 
 type ProductDataProps = {
   item: ProductProps | undefined;
 };
 
-export const Product = ({ item }: ProductDataProps) => {
+const Product = ({ item }: ProductDataProps) => {
+  const { isSignedIn } = useAuth();
   const [quantity, setQuantity] = useState(1);
-  const cart = useAuthenticatedCart();
+  const cart = useCart();
   const orderModal = useOrderModal();
 
   if (!item) {
@@ -42,6 +49,10 @@ export const Product = ({ item }: ProductDataProps) => {
   };
 
   const onAddtoCart: MouseEventHandler<HTMLButtonElement> = () => {
+    if (!isSignedIn) {
+      toast.error("カートを操作するにはログインが必要です");
+      return;
+    }
     cart.addItem(item);
   };
 
@@ -92,3 +103,5 @@ export const Product = ({ item }: ProductDataProps) => {
     </>
   );
 };
+
+export default Product;

@@ -1,8 +1,6 @@
 // components
 import Container from "@/components/ui/container";
-
-// features
-import { CartList } from "@/pages/carts/cart-list";
+import CartList from "@/components/pages/carts/cart-list";
 
 const CartsPage = () => {
   return (

@@ -29,13 +29,13 @@ interface CartCardProps {
   item: ProductProps;
 }
 
-export const CartCard: React.FC<CartCardProps> = ({ item }) => {
+const CartCard: React.FC<CartCardProps> = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
   const cart = useCart();
 
   // 商品を削除する関数
   const onRemove = () => {
-    cart.removeItem(item._id);
+    cart.removeItem(item?._id);
   };
 
   return (
@@ -44,22 +44,22 @@ export const CartCard: React.FC<CartCardProps> = ({ item }) => {
         <div className="flex overflow-hidden">
           <div className="bg-gray-300 w-[180px] h-[230px]  sm:w-[320px] sm:h-[340px]">
             <Image
-              src={item.image}
-              alt={item.title}
+              src={item?.image}
+              alt={item?.title}
               className="object-cover h-full w-full border-r"
             />
           </div>
           <div className="flex flex-col justify-between w-full">
             <CardHeader>
-              <CardTitle>{item.title}</CardTitle>
+              <CardTitle>{item?.title}</CardTitle>
               <CardDescription className="text-xs">
-                {item.description}
+                {item?.description}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div>
                 合計:
-                <Currency value={item.price * quantity} />
+                <Currency value={item?.price * quantity} />
               </div>
             </CardContent>
 
@@ -76,3 +76,5 @@ export const CartCard: React.FC<CartCardProps> = ({ item }) => {
     </div>
   );
 };
+
+export default CartCard;

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 
 // toast
 import { toast } from "react-hot-toast";
@@ -9,26 +8,22 @@ import { toast } from "react-hot-toast";
 // hooks
 import { useCart } from "@/hooks/use-cart";
 
-// features
-import { CartCard } from "@/pages/carts/cart-card";
-
 // components
 import Currency from "@/components/ui/currency";
 import { Button } from "@/components/ui/button";
+import CartCard from "@/components/pages/carts/cart-card";
 
 // clerk
-import { useSession } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 
 // test
 // import { ProductData } from "@/datatest/product-data";
 
-export const CartList = () => {
-  const { isSignedIn } = useSession();
+const CartList = () => {
+  const { isSignedIn } = useAuth();
 
   const [isMounted, setIsMounted] = useState(false);
-  const searchParams = useSearchParams();
 
-  // useCart
   const cart = useCart();
   const items = useCart((state) => state.items);
 
@@ -42,7 +37,7 @@ export const CartList = () => {
 
   // カートにある商品を計算します　初期値は0円
   const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
+    return total + Number(item?.price);
   }, 0);
 
   const handleClearCart = () => {
@@ -60,7 +55,7 @@ export const CartList = () => {
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {cart.items.map((item) => (
-          <CartCard key={item._id} item={item} />
+          <CartCard key={item?._id} item={item} />
         ))}
       </div>
 
@@ -79,3 +74,5 @@ export const CartList = () => {
     </div>
   );
 };
+
+export default CartList;

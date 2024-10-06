@@ -5,7 +5,7 @@ import { Info } from "@/components/ui/info";
 // test
 import { NewsData } from "@/datatest/news-data";
 
-export const News = () => {
+const News = () => {
   const item = NewsData[0];
   return (
     <>
@@ -21,3 +21,5 @@ export const News = () => {
     </>
   );
 };
+
+export default News;

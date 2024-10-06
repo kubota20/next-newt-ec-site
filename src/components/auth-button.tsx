@@ -1,3 +1,4 @@
+"use client";
 // clerk
 import {
   SignedIn,
@@ -7,7 +8,7 @@ import {
   ClerkLoading,
   ClerkLoaded,
 } from "@clerk/nextjs";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { useAuth } from "@clerk/nextjs";
 
 // icon
 import { LogIn } from "lucide-react";
@@ -15,9 +16,8 @@ import { LogIn } from "lucide-react";
 // components
 import { UserLoading } from "@/components/loadings/user-loading";
 
-export const AuthButton = async () => {
-  const user = await currentUser();
-  const { userId } = auth();
+export const AuthButton = () => {
+  const { userId } = useAuth();
 
   if (!userId) {
     return (

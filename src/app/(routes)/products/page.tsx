@@ -5,10 +5,8 @@
 import { getProductList } from "@/actions/get-products";
 import { getCategory } from "@/actions/get-categories";
 
-// features
-import { ProductCard } from "@/components/product-card";
-
 // components
+import { ProductCard } from "@/components/product-card";
 import Container from "@/components/ui/container";
 import {
   Pagination,

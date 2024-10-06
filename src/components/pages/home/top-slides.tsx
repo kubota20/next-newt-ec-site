@@ -1,4 +1,4 @@
-import { TopImages } from "@/pages/home/top-images";
+import TopImages from "@/components/pages/home/top-images";
 
 const TopSlides = () => {
   return (

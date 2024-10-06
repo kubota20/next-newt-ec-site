@@ -1,7 +1,5 @@
-// features
-import { ProductCard } from "@/components/product-card";
-
 // components
+import { ProductCard } from "@/components/product-card";
 import Container from "@/components/ui/container";
 import { CategorySelect } from "@/components/category-select";
 import { TitleSearch } from "@/components/title-search";
@@ -27,6 +25,8 @@ type Props = {
     category: string;
   };
 };
+
+export const revalidate = 0;
 
 const CategoriesPage = async ({ params }: Props) => {
   const data = await getProductsByCategory(params.category);

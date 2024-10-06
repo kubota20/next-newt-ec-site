@@ -1,4 +1,4 @@
-import { News } from "@/pages/news/news";
+import News from "@/components/pages/news/news";
 
 const SingleNewsPage = () => {
   return (

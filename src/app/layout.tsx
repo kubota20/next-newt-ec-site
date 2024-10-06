@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { Noto_Sans_JP } from "next/font/google";
 
 // providers
@@ -29,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider localization={jaJP}>
-      <html lang="ja">
+    <html lang="ja">
+      <ClerkProvider localization={jaJP}>
         <body className={inter.className}>
           <HeaderNav />
           {children}
@@ -38,7 +39,7 @@ export default function RootLayout({
           <ModalProvider />
           <ToastProvider />
         </body>
-      </html>
-    </ClerkProvider>
+      </ClerkProvider>
+    </html>
   );
 }

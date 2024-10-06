@@ -17,23 +17,32 @@ import { ChevronRight, ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 // hooks
+import { useCart } from "@/hooks/use-cart";
 
-import { useAuthenticatedCart } from "@/hooks/use-authenticated-cart";
+// clerk
+import { useAuth } from "@clerk/nextjs";
+
+// toast
+import toast from "react-hot-toast";
 
 interface ProductCardProps {
   item: ProductProps;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
-  const cart = useAuthenticatedCart();
+  const { isSignedIn } = useAuth();
+  const cart = useCart();
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/products/${item._id}
+    router.push(`/products/${item?._id}
 `);
   };
 
   const onAddtoCart: MouseEventHandler<HTMLButtonElement> = () => {
+    if (!isSignedIn) {
+      return toast.error("カートに商品を追加するにはログインしてください");
+    }
     cart.addItem(item);
   };
 
@@ -43,8 +52,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
         <div className="rounded-full relative">
           {/* 画像 */}
           <Image
-            src={item.image}
-            alt={item.title}
+            src={item?.image}
+            alt={item?.title}
             className="object-cover  w-full h-32 lg:h-52 "
           />
 
@@ -73,8 +82,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
 
           {/* 名前 値段 */}
           <div className="absolute z-10 top-0 flex flex-col items-center justify-around bg-black/35 rounded-lg w-full py-2 px-4 text-white">
-            <h3 className="text-xs md:text-xl">{item.title}</h3>
-            <p className="text-sm md:text-base md:font-black">{item.price}円</p>
+            <h3 className="text-xs md:text-xl">{item?.title}</h3>
+            <p className="text-sm md:text-base md:font-black">
+              {item?.price}円
+            </p>
           </div>
         </div>
       </div>
