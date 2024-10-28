@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
+// zod & formHook
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,6 +19,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+// toast
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   username: z
@@ -35,6 +41,7 @@ const formSchema = z.object({
 });
 
 const ContactForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,9 +51,40 @@ const ContactForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const formData = new FormData();
+
+      // フォームデータに値を追加
+      Object.entries(values).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_NEWT_FORM_ENDPOINT ?? "",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        toast.success("送信が成功しました。ホームページに戻ります。");
+
+        router.push("/");
+      } else {
+        toast.error("送信に失敗しました。もう一度入力して下さい。");
+        router.push("/contact");
+      }
+    } catch (error) {
+      toast.error("送信エラー");
+      console.log("送信エラー:", error);
+    }
   };
+
   return (
     <div className="w-80 sm:w-96">
       <Form {...form}>
