@@ -1,8 +1,9 @@
-import { NewtClient } from "@/lib/newt";
+import { cdnClient } from "@/lib/newt";
+import { cache } from "react";
 import { CategoryProps, ProductProps } from "@/types/types";
 
-export const getCategory = async () => {
-  const { items } = await NewtClient.getContents<CategoryProps>({
+export const getCategory = cache(async () => {
+  const { items } = await cdnClient.getContents<CategoryProps>({
     appUid: "product",
     modelUid: "category",
     query: {
@@ -11,19 +12,19 @@ export const getCategory = async () => {
   });
 
   return items;
-};
+});
 
-export const getCategoryList = async () => {
-  const { items } = await NewtClient.getContents<ProductProps>({
+export const getCategoryList = cache(async () => {
+  const { items } = await cdnClient.getContents<ProductProps>({
     appUid: "product",
     modelUid: "article",
   });
 
   return items;
-};
+});
 
-export const getProductsByCategory = async (category: string) => {
-  const { items } = await NewtClient.getContents<ProductProps>({
+export const getProductsByCategory = cache(async (category: string) => {
+  const { items } = await cdnClient.getContents<ProductProps>({
     appUid: "product",
     modelUid: "article",
     query: {
@@ -35,4 +36,4 @@ export const getProductsByCategory = async (category: string) => {
   });
 
   return items;
-};
+});
