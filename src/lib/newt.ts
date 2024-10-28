@@ -1,8 +1,9 @@
 import { createClient } from "newt-client-js";
 
-export const NewtClient = createClient({
-  spaceUid: process.env.NEWT_SPACE_UID + "",
-  token: process.env.NEWT_CDN_API_TOKEN + "",
+// Newt CDN APIのクライアント（公開コンテンツのみ取得）
+export const cdnClient = createClient({
+  spaceUid: process.env.NEXT_PUBLIC_NEWT_SPACE_UID + "",
+  token: process.env.NEXT_PUBLIC_NEWT_CDN_API_TOKEN + "",
   apiType: "cdn",
 });
 
