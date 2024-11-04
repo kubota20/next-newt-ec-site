@@ -19,3 +19,17 @@ export type CategoryProps = {
   name: string;
   slug: string;
 } & Content;
+
+// 注文用
+export type ProductItem = {
+  title: string;
+  price: number;
+};
+
+export type OrderData = {
+  name: string | null | undefined;
+  email: string | null;
+  items: ProductItem[];
+  createdAt: Date;
+  totalPrice: number;
+};
