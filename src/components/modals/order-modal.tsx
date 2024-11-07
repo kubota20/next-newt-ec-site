@@ -4,7 +4,6 @@ import { useState } from "react";
 
 // type
 import type { MouseEventHandler } from "react";
-// import { OrderData } from "@/types/types";
 
 // hooks
 import { useOrderModal } from "@/hooks/use-order-modal";
@@ -13,13 +12,16 @@ import { useOrderModal } from "@/hooks/use-order-modal";
 import { Modal } from "@/components/ui/modal";
 import QuantitySelection from "@/components/ui/quantity-selection";
 import Currency from "@/components/ui/currency";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 // lib
 import { SaveOrder } from "@/lib/firebase";
 
 // clerk
 import { useUser } from "@clerk/nextjs";
+
+// toast
+import toast from "react-hot-toast";
 
 const OrderModal = () => {
   const { user } = useUser();
@@ -42,6 +44,12 @@ const OrderModal = () => {
   };
 
   const handleOrder: MouseEventHandler<HTMLButtonElement> = async () => {
+    // ログインしてない場合
+    if (!user) {
+      toast.error("注文するにはログインが必要です");
+      return; // 処理を中断
+    }
+
     SaveOrder(orderData);
   };
 
