@@ -35,7 +35,6 @@ export const TitleSearch = ({ productData }: Props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
-  const params = useParams();
   const router = useRouter();
 
   const fromattedItems = productData.map((item) => ({

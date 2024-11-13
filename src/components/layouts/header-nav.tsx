@@ -1,15 +1,14 @@
 import Link from "next/link";
 
 // components
-import Container from "@/components/ui/container";
 import { AuthButton } from "@/components/auth-button";
 import { MainNav } from "@/components/layouts/main-nav";
 import { Navbar } from "@/components/layouts/navbar";
 
 const HeaderNav = () => {
   return (
-    <header className="fixed z-10 w-full bg-black bg-opacity-80 text-white py-2 ">
-      <Container>
+    <header className="fixed z-10 w-full bg-black bg-opacity-80 text-white p-2 ">
+      <div>
         <div className="flex justify-between items-center">
           {/* ナビゲーションバー */}
           <div className="sm:hidden">
@@ -17,7 +16,7 @@ const HeaderNav = () => {
           </div>
 
           {/* ロゴ */}
-          <div className="max-sm:w-full text-center">
+          <div className="max-sm:w-full text-center ">
             <Link href="/">
               <h1 className="text-2xl font-bold ">Books</h1>
             </Link>
@@ -37,7 +36,7 @@ const HeaderNav = () => {
             <AuthButton />
           </div>
         </div>
-      </Container>
+      </div>
     </header>
   );
 };

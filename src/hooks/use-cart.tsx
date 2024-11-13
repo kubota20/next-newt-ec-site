@@ -40,13 +40,11 @@ export const useCart = create(
       removeItem: (id: string) => {
         // Product配列にあるidとremoveItemにあるidが違えばイベントを起こす
         set({ items: [...get().items.filter((item) => item?._id !== id)] });
-        toast.success("商品を削除しました");
       },
 
       // カートの全削除
       removeAll: () => {
         set({ items: [] });
-        toast.success("カートを空にしました");
       },
     }),
     {
