@@ -13,6 +13,8 @@ import "./globals.css";
 import HeaderNav from "@/components/layouts/header-nav";
 import CartAction from "@/components/layouts/cart-action";
 
+import Footer from "@/components/layouts/footer";
+
 // clerk 認証機能
 import { ClerkProvider } from "@clerk/nextjs";
 import { jaJP } from "@clerk/localizations"; // 日本言語を取得
@@ -34,8 +36,10 @@ export default function RootLayout({
       <ClerkProvider localization={jaJP}>
         <body className={inter.className}>
           <HeaderNav />
+
           {children}
           <CartAction />
+          <Footer />
           <ModalProvider />
           <ToastProvider />
         </body>

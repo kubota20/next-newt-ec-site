@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useMemo, memo } from "react";
 
 // clerk
 import {
@@ -21,27 +21,27 @@ import { UserLoading } from "@/components/loadings/user-loading";
 
 export const AuthButton = () => {
   const { session } = useSession();
-  const [isSessionReady, setIsSessionReady] = useState(false);
+  // const [isSessionReady, setIsSessionReady] = useState(false);
 
-  // セッションが準備できたら表示
-  useEffect(() => {
-    if (session !== undefined) {
-      setIsSessionReady(true);
-    }
-  }, [session]);
+  // // セッションが準備できたら表示
+  // useEffect(() => {
+  //   if (session !== undefined) {
+  //     setIsSessionReady(true);
+  //   }
+  // }, [session]);
 
-  // ロード時に表示
-  if (!isSessionReady) {
-    // セッション準備中ローディング表示
-    // if文を使わずそのままreturn内に入れたがローディング表示されなかったのでif文を作りました。
-    return (
-      <div className="w-7">
-        <ClerkLoading>
-          <UserLoading />
-        </ClerkLoading>
-      </div>
-    );
-  }
+  // // ロード時に表示
+  // if (!isSessionReady) {
+  //   // セッション準備中ローディング表示
+  //   // if文を使わずそのままreturn内に入れたがローディング表示されなかったのでif文を作りました。
+  //   return (
+  //     <div className="w-7">
+  //       <ClerkLoading>
+  //         <UserLoading />
+  //       </ClerkLoading>
+  //     </div>
+  //   );
+  // }
 
   if (!session) {
     return (
@@ -60,12 +60,14 @@ export const AuthButton = () => {
 
   return (
     <>
+      <ClerkLoading>
+        <UserLoading />
+      </ClerkLoading>
       {/* ロード後に表示 */}
-      <ClerkLoaded>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </ClerkLoaded>
+
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
     </>
   );
 };

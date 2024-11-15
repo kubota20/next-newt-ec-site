@@ -14,19 +14,22 @@ import QuantitySelection from "@/components/ui/quantity-selection";
 import Currency from "@/components/ui/currency";
 import { Button } from "@/components/ui/button";
 
-// lib
-import { SaveOrder } from "@/lib/firebase";
+// actions
+import { SaveOrder } from "@/actions/post-order";
 
 // clerk
 import { useUser } from "@clerk/nextjs";
 
 // toast
 import toast from "react-hot-toast";
+import { useCart } from "@/hooks/use-cart";
+import { redirect } from "next/navigation";
 
 const OrderModal = () => {
   const { user } = useUser();
   const [quantity, setQuantity] = useState(1);
 
+  const cart = useCart();
   const orderModal = useOrderModal();
   const product = useOrderModal((state) => state.data);
 
@@ -51,6 +54,9 @@ const OrderModal = () => {
     }
 
     SaveOrder(orderData);
+    toast.success("注文しました");
+    cart.removeItem(product._id);
+    redirect("/carts");
   };
 
   return (

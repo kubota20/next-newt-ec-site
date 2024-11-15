@@ -32,7 +32,7 @@ const EventNews = () => {
           {/* Products Link */}
         </div>
         <div className="text-right underline mb-2">
-          <Link href="/">イベントを見に行く</Link>
+          <Link href="/news">イベントを見に行く</Link>
         </div>
       </Container>
     </section>

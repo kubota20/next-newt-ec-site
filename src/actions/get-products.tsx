@@ -1,3 +1,4 @@
+"use server";
 import { cdnClient } from "@/lib/newt";
 import { cache } from "react";
 import { ProductProps } from "@/types/types";

@@ -16,12 +16,13 @@ import {
 
 // プラグインURL　https://www.embla-carousel.com/plugins/autoplay/
 import Autoplay from "embla-carousel-autoplay";
+import Container from "@/components/ui/container";
 
 const TopImages = () => {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
 
   return (
-    <>
+    <Container>
       <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
@@ -31,13 +32,13 @@ const TopImages = () => {
         <CarouselContent>
           {TopData.map((item, index) => (
             <CarouselItem key={index}>
-              <div className="relative w-full h-[420px] sm:h-[720px]">
+              <div className="relative w-full h-full">
                 <Image
                   src={item.image}
                   alt={item.title}
                   // priorityはLCP画像用
                   priority={index === 0}
-                  className="object-cover h-full"
+                  className="object-cover h-[380px] sm:h-[500px]"
                 />
                 {/* 黒い半透明のオーバーレイ */}
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-300 bg-black opacity-35" />
@@ -56,7 +57,7 @@ const TopImages = () => {
           ))}
         </CarouselContent>
       </Carousel>
-    </>
+    </Container>
   );
 };
 

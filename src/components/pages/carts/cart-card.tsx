@@ -21,9 +21,12 @@ import QuantitySelection from "@/components/ui/quantity-selection";
 
 // type
 import { ProductProps } from "@/types/types";
+import type { MouseEventHandler } from "react";
 
 // hooks
 import { useCart } from "@/hooks/use-cart";
+import { ShoppingBag } from "lucide-react";
+import { useOrderModal } from "@/hooks/use-order-modal";
 
 interface CartCardProps {
   item: ProductProps;
@@ -32,10 +35,16 @@ interface CartCardProps {
 const CartCard: React.FC<CartCardProps> = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
   const cart = useCart();
+  const orderModal = useOrderModal();
 
-  // 商品を削除する関数
+  // 商品を削除する
   const onRemove = () => {
     cart.removeItem(item?._id);
+  };
+
+  // 注文する
+  const onOrder: MouseEventHandler<HTMLButtonElement> = () => {
+    orderModal.onOpen(item);
   };
 
   return (
@@ -66,6 +75,10 @@ const CartCard: React.FC<CartCardProps> = ({ item }) => {
             <CardFooter className="flex items-center justify-around gap-2">
               {/* 個数選択 */}
               <QuantitySelection setQuantity={setQuantity} />
+              <Button className="border gap-2" onClick={onOrder}>
+                <ShoppingBag />
+                注文する
+              </Button>
               <Button onClick={onRemove} variant="destructive">
                 削除
               </Button>

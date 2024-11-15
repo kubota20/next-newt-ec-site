@@ -35,7 +35,7 @@ const CategoriesPage = async ({ params }: Props) => {
   const productData = await getProductList();
 
   return (
-    <div className="flex flex-col bg-[rgb(248,248,248)]">
+    <div className="flex flex-col h-full bg-[rgb(248,248,248)]">
       <div className="my-32">
         <Container>
           <div className=" flex items-center justify-between my-16 ">

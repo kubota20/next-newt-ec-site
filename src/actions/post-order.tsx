@@ -1,3 +1,4 @@
+"use server";
 // firebase
 import { addDoc, collection } from "firebase/firestore";
 

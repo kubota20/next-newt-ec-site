@@ -49,10 +49,12 @@ const Product = ({ item }: ProductDataProps) => {
     return <div>商品が見つかりません。</div>;
   }
 
+  // 注文する
   const onOrder: MouseEventHandler<HTMLButtonElement> = () => {
     orderModal.onOpen(item);
   };
 
+  // カートに追加する
   const onAddtoCart: MouseEventHandler<HTMLButtonElement> = () => {
     if (!isSignedIn) {
       toast.error("カートを操作するにはログインが必要です");
@@ -66,18 +68,20 @@ const Product = ({ item }: ProductDataProps) => {
       <div className="my-32">
         <div className="p-4 sm:border">
           {/* 画像 */}
-          <div className="h-[300px] sm:h-[450px] border shadow-xl bg-gray-300">
+          <div className="h-[300px] sm:h-[450px] border shadow-xl bg-gray-300 ">
             <Image
               src={item.image}
               alt={item.title}
-              className="h-[300px] sm:h-[450px] object-cover"
+              className="w-[280px] h-full sm:h-[450px] object-cover mx-auto"
             />
           </div>
+
           {/* タイトル */}
           <div className="flex items-center justify-between my-6">
             <Info title={item.title} />
             <p className="font-bold">{item?.price}円</p>
           </div>
+
           {/* 説明 */}
           <p>{item.description}</p>
           <div className="bg-gray-100 p-2 my-4">
@@ -89,6 +93,7 @@ const Product = ({ item }: ProductDataProps) => {
               {/* 個数選択 */}
               <QuantitySelection setQuantity={setQuantity} />
             </div>
+
             {/* 注文、カートボタン */}
             <div className="flex items-center justify-center gap-4 mt-10">
               <Button className="border gap-2" onClick={onOrder}>
