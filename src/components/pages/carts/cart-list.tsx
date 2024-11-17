@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // type
 import type { MouseEventHandler } from "react";
@@ -19,6 +19,8 @@ import CartCard from "@/components/pages/carts/cart-card";
 
 // clerk
 import { useAuth, useUser } from "@clerk/nextjs";
+
+// icon
 import { ShoppingBag } from "lucide-react";
 
 // actions
@@ -32,14 +34,23 @@ const CartList = () => {
   const { isSignedIn } = useAuth();
 
   const [isMounted, setIsMounted] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantities, setQuantities] = useState<{ [id: string]: number }>({});
+
+  const router = useRouter();
 
   const cart = useCart();
   const items = useCart((state) => state.items);
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+
+    // 初期化: 各アイテムの個数を1に設定
+    const initialQuantities = items.reduce((acc, item) => {
+      acc[item._id] = 1;
+      return acc;
+    }, {} as { [id: string]: number });
+    setQuantities(initialQuantities);
+  }, [items]);
 
   if (!isMounted) {
     return null;
@@ -47,7 +58,7 @@ const CartList = () => {
 
   // カートにある商品を計算します　初期値は0円
   const totalPrice = items.reduce((total, item) => {
-    return total + Number(item.price);
+    return total + item.price * (quantities[item._id] || 1);
   }, 0);
 
   const orderData = {
@@ -77,10 +88,25 @@ const CartList = () => {
       return;
     }
 
-    SaveOrder(orderData);
-    toast.success("注文が完了しました");
-    cart.removeAll();
-    redirect("/products");
+    try {
+      SaveOrder(orderData);
+      toast.success("注文が完了しました");
+      cart.removeAll();
+      router.push("/carts");
+    } catch (error) {
+      toast.error("注文出来ませんでした");
+
+      setTimeout(() => {
+        router.push("/carts");
+      }, 3000);
+    }
+  };
+
+  const updateQuantity = (id: string, quantity: number) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: quantity,
+    }));
   };
 
   return (
@@ -90,11 +116,19 @@ const CartList = () => {
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {cart.items.map((item) => (
-          <CartCard key={item._id} item={item} />
+          <CartCard
+            key={item._id}
+            item={item}
+            quantity={quantities[item._id] || 1}
+            onQuantityChange={(quantity: number) =>
+              updateQuantity(item._id, quantity)
+            }
+          />
         ))}
       </div>
 
-      <div className="mt-6 ">
+      <div className="mt-16">
+        {/* ０個以上商品がある場合表示 */}
         {cart.items.length > 0 && (
           <div className="flex items-center justify-around gap-4">
             <Button className="border gap-2" onClick={handleAllOrder}>

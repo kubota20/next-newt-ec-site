@@ -26,6 +26,7 @@ type Props = {
   };
 };
 
+// revalidate リクエストは0秒に1回受信されます。
 export const revalidate = 0;
 
 const CategoriesPage = async ({ params }: Props) => {
@@ -34,15 +35,20 @@ const CategoriesPage = async ({ params }: Props) => {
   const categoryData = await getCategory();
   const productData = await getProductList();
 
+  const currentCategory = categoryData.find(
+    (cat) => cat._id === params?.category
+  );
+
   return (
     <div className="flex flex-col h-full bg-[rgb(248,248,248)]">
       <div className="my-32">
         <Container>
-          <div className=" flex items-center justify-between my-16 ">
-            <div className="w-full">
+          <div className="flex items-center justify-between my-16 max-sm:flex-col max-sm:space-y-4">
+            <div className="w-full flex items-center justify-center">
               <h2 className="font-bold text-3xl text-center">商品</h2>
+              <p className="font-bold">（{currentCategory?.name}）</p>
             </div>
-            <div className=" flex gap-2">
+            <div className="flex gap-2">
               <CategorySelect catItem={categoryData} />
               <TitleSearch productData={productData} />
             </div>

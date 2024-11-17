@@ -1,15 +1,11 @@
 "use client";
 
-import { useState } from "react";
-
 import Image from "next/image";
 
 // components
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Info } from "@/components/ui/info";
-import QuantitySelection from "@/components/ui/quantity-selection";
-import Currency from "@/components/ui/currency";
 
 // icon
 import { ShoppingBag, ShoppingCart } from "lucide-react";
@@ -39,8 +35,6 @@ type ProductDataProps = {
 };
 
 const Product = ({ item }: ProductDataProps) => {
-  const [quantity, setQuantity] = useState(1);
-
   const { isSignedIn } = useAuth();
   const cart = useCart();
   const orderModal = useOrderModal();
@@ -84,23 +78,17 @@ const Product = ({ item }: ProductDataProps) => {
 
           {/* 説明 */}
           <p>{item.description}</p>
-          <div className="bg-gray-100 p-2 my-4">
-            <div className="flex items-center justify-around gap-2 ">
-              {/* 選択した数だけプラス */}
-              <p className="flex">
-                合計: <Currency value={item.price * quantity} />
-              </p>
-              {/* 個数選択 */}
-              <QuantitySelection setQuantity={setQuantity} />
-            </div>
-
+          <div className=" p-2 my-4">
             {/* 注文、カートボタン */}
-            <div className="flex items-center justify-center gap-4 mt-10">
+            <div className="flex items-center justify-center gap-4 ">
               <Button className="border gap-2" onClick={onOrder}>
                 <ShoppingBag />
                 注文する
               </Button>
-              <Button className="border gap-2" onClick={onAddtoCart}>
+              <Button
+                className="border gap-2 bg-black text-white hover:text-black"
+                onClick={onAddtoCart}
+              >
                 <ShoppingCart />
                 カートに追加
               </Button>

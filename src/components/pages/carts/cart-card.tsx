@@ -25,15 +25,23 @@ import type { MouseEventHandler } from "react";
 
 // hooks
 import { useCart } from "@/hooks/use-cart";
-import { ShoppingBag } from "lucide-react";
 import { useOrderModal } from "@/hooks/use-order-modal";
+
+// icon
+import { ShoppingBag } from "lucide-react";
 
 interface CartCardProps {
   item: ProductProps;
+  quantity: number;
+  onQuantityChange: (quantity: number) => void;
 }
 
-const CartCard: React.FC<CartCardProps> = ({ item }) => {
-  const [quantity, setQuantity] = useState(1);
+const CartCard: React.FC<CartCardProps> = ({
+  item,
+  quantity,
+  onQuantityChange,
+}) => {
+  // const [quantity, setQuantity] = useState(1);
   const cart = useCart();
   const orderModal = useOrderModal();
 
@@ -74,7 +82,7 @@ const CartCard: React.FC<CartCardProps> = ({ item }) => {
 
             <CardFooter className="flex items-center justify-around gap-2">
               {/* 個数選択 */}
-              <QuantitySelection setQuantity={setQuantity} />
+              <QuantitySelection setQuantity={onQuantityChange} />
               <Button className="border gap-2" onClick={onOrder}>
                 <ShoppingBag />
                 注文する

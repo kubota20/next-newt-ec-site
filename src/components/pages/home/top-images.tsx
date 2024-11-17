@@ -13,10 +13,10 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Container from "@/components/ui/container";
 
 // プラグインURL　https://www.embla-carousel.com/plugins/autoplay/
 import Autoplay from "embla-carousel-autoplay";
-import Container from "@/components/ui/container";
 
 const TopImages = () => {
   const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));

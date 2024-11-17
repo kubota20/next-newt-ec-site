@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
+// components
 import CartButton from "@/components/ui/cart-button";
+
+// hooks
 import { useCart } from "@/hooks/use-cart";
 
 const CartAction = () => {

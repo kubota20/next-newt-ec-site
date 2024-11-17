@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { redirect } from "next/navigation";
 
 // type
 import type { MouseEventHandler } from "react";
 
 // hooks
 import { useOrderModal } from "@/hooks/use-order-modal";
+import { useCart } from "@/hooks/use-cart";
 
 // components
 import { Modal } from "@/components/ui/modal";
@@ -22,8 +24,6 @@ import { useUser } from "@clerk/nextjs";
 
 // toast
 import toast from "react-hot-toast";
-import { useCart } from "@/hooks/use-cart";
-import { redirect } from "next/navigation";
 
 const OrderModal = () => {
   const { user } = useUser();
@@ -62,7 +62,10 @@ const OrderModal = () => {
   return (
     <Modal
       isOpen={orderModal.isOpen}
-      onClose={orderModal.onClose}
+      onClose={() => {
+        setQuantity(1); // 個数をリセット
+        orderModal.onClose();
+      }}
       title={product.title}
       description={product.description}
       image={product.image}
@@ -82,7 +85,13 @@ const OrderModal = () => {
         >
           注文
         </Button>
-        <Button variant="destructive" onClick={orderModal.onClose}>
+        <Button
+          variant="destructive"
+          onClick={() => {
+            setQuantity(1); // 個数をリセット
+            orderModal.onClose();
+          }}
+        >
           キャンセル
         </Button>
       </div>

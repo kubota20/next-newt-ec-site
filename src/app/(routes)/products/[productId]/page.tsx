@@ -9,6 +9,8 @@ type Props = {
     productId: string;
   };
 };
+
+// revalidate リクエストは0秒に1回受信されます。
 export const revalidate = 0;
 
 const ProductPage = async ({ params }: Props) => {

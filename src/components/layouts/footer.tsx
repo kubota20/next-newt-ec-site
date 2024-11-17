@@ -1,8 +1,8 @@
 "use client";
+import { usePathname } from "next/navigation";
+
 // components
 import { Button } from "@/components/ui/button";
-
-import { usePathname } from "next/navigation";
 import HomeFooter from "@/components/pages/home/home-footer";
 
 const Footer = () => {

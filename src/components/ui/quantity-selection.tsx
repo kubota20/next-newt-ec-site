@@ -12,12 +12,10 @@ import {
 } from "@/components/ui/select";
 
 type QuantitySelectionProps = {
-  setQuantity: Dispatch<SetStateAction<number>>;
+  setQuantity: (quantity: number) => void;
 };
 
 const QuantitySelection = ({ setQuantity }: QuantitySelectionProps) => {
-  // 選択された個数を管理する状態を定義
-
   // 個数を選択したときに状態を更新
   const handleQuantityChange = (value: string) => {
     setQuantity(Number(value)); // 選択された個数を状態に保存
@@ -38,7 +36,7 @@ const QuantitySelection = ({ setQuantity }: QuantitySelectionProps) => {
   return (
     <Select onValueChange={handleQuantityChange}>
       <SelectTrigger className="bg-white w-[80px]">
-        <SelectValue placeholder="個数" />
+        <SelectValue placeholder="1" />
       </SelectTrigger>
       <SelectContent className="bg-white min-w-[60px]">
         {generateSelectItems(5)}

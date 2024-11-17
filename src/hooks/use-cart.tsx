@@ -33,7 +33,6 @@ export const useCart = create(
         }
 
         set({ items: [...currentItems, item] });
-        toast.success("カートに追加しました");
       },
 
       // 削除
