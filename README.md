@@ -24,7 +24,6 @@
 - (Login)ログイン = アカウント = (Logout)ログアウト
 - (Contact)お問い合せ
 - (Carts)カート
-- (OrderDetails)注文履歴
 
 ### 4. モーダル
 
@@ -88,7 +87,6 @@ pnpm create next-app my-app --typescript --tailwind --eslint
 `追加した動的ページ`
 
 - [categories](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/categories/a) : `[categoryId]`
-- [news](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/news/a) : `[newsId]`
 - [products](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/products/a) : `[productId]`
 
 categoryId と productId の中身は同じなのでそのまま使い回してます。
@@ -248,28 +246,3 @@ export default nextConfig;
 #### 2. プロフィールのカスタマイズ
 
 `<UserButton/>`コンポーネントのプロフィール UI のユーザ名の姓名が英語用の表示順になってたので順番をカスタマイズしようとしたが、そもそも`UserButton`のプロフィールをカスタマイズは難しい、やり方は`プロフィールページを作成`する所からやらないと行けなくコード量が増える為断念。プロフィール UI が提供されているのでそのまま使用します。
-
-## Vitest
-
-この EC サイトのテストを`Vitest`で行います
-
-主にテストをするのは`認証`や`API`のテストを行います
-
-[test ファイル](/my-app/src/test/)で確認できます
-
-最初はそれぞれの単発テストを行い、最後に結合テストを行います
-
-| パッケージ                  | バージョン | 説明                                                         |
-| :-------------------------- | :--------- | :----------------------------------------------------------- |
-| vitest                      | v1.6.0     | 高速でシンプルなユニットテストフレームワーク                 |
-| @vitejs/plugin-react        | v4.3.1     | Vite で React プロジェクトを構築・開発するためのプラグイン。 |
-| @testing-library/react      | v16.0.0    | React コンポーネントのテストを支援するライブラリ             |
-| @testing-library/user-event | v14.5.2    | ユーザーイベントをシミュレートしてテストするためのライブラリ |
-| jsdom                       | v24.1.0    | Node.js 環境でブラウザの DOM をシミュレートするライブラリ    |
-
-## インストール
-
-```
-pnpm i -D vitest @testing-library/react @testing-library/user-event @vitejs/plugin-react jsdom
-
-```
