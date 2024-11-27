@@ -3,18 +3,10 @@ import { ProductCard } from "@/components/product-card";
 import Container from "@/components/ui/container";
 import { CategorySelect } from "@/components/category-select";
 import { TitleSearch } from "@/components/title-search";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import ProductPagination from "@/components/product-pagination";
 
 // actions
-import { getProductList } from "@/actions/get-products";
+import { getPaginatedProducts } from "@/actions/get-products";
 import { getCategory, getProductsByCategory } from "@/actions/get-categories";
 
 // test
@@ -24,16 +16,22 @@ type Props = {
   params: {
     category: string;
   };
+  searchParams: { page?: string };
 };
 
 // revalidate リクエストは0秒に1回受信されます。
 export const revalidate = 0;
 
-const CategoriesPage = async ({ params }: Props) => {
+const CategoriesPage = async ({ params, searchParams }: Props) => {
   const data = await getProductsByCategory(params.category);
 
   const categoryData = await getCategory();
-  const productData = await getProductList();
+  const currentPage = Number(searchParams.page) || 1;
+  const itemsPerPage = 6;
+  const { items, total } = await getPaginatedProducts(
+    currentPage,
+    itemsPerPage
+  );
 
   const currentCategory = categoryData.find(
     (cat) => cat._id === params?.category
@@ -50,7 +48,7 @@ const CategoriesPage = async ({ params }: Props) => {
             </div>
             <div className="flex gap-2">
               <CategorySelect catItem={categoryData} />
-              <TitleSearch productData={productData} />
+              <TitleSearch productData={items} />
             </div>
           </div>
 
@@ -65,22 +63,11 @@ const CategoriesPage = async ({ params }: Props) => {
 
       {/* ページネーション */}
       <div className="mb-10">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        <ProductPagination
+          currentPage={currentPage}
+          total={total}
+          itemsPerPage={itemsPerPage}
+        />
       </div>
     </div>
   );

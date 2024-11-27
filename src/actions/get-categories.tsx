@@ -1,6 +1,10 @@
 "use server";
-import { cdnClient } from "@/lib/newt";
 import { cache } from "react";
+
+// lib
+import { cdnClient } from "@/lib/newt";
+
+// types
 import { CategoryProps, ProductProps } from "@/types/types";
 
 export const getCategory = cache(async () => {

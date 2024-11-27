@@ -1,4 +1,8 @@
 "use client";
+
+import { useRouter, useParams } from "next/navigation";
+
+// components
 import {
   Select,
   SelectContent,
@@ -10,7 +14,6 @@ import {
 
 // types
 import { CategoryProps } from "@/types/types";
-import { useRouter, useParams } from "next/navigation";
 
 type CategorySelectProps = {
   catItem: CategoryProps[] | undefined;

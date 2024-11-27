@@ -12,7 +12,9 @@ import { getProductList } from "@/actions/get-products";
 // import { ProductData } from "@/datatest/product-data";
 
 const ProductList = async () => {
-  const ProductData = await getProductList();
+  // 最初の一ページ目の５件だけ表示
+  const { items } = await getProductList(1, 5);
+
   return (
     <section className="bg-[rgb(248,248,248)]">
       <Container>
@@ -22,11 +24,10 @@ const ProductList = async () => {
             <div className="bg-[#E2E8DE] w-full h-32 lg:h-52 rounded-full border p-3">
               <Info title="商品" />
             </div>
-            {ProductData.map(
-              (item, index) =>
-                // ホームでは5件まで表示するようにしてます
-                index < 5 && <ProductCard key={item._id} item={item} />
-            )}
+            {items.map((item) => (
+              // ホームでは5件まで表示するようにしてます
+              <ProductCard key={item._id} item={item} />
+            ))}
           </div>
         </div>
         {/* Products Link */}

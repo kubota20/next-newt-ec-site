@@ -61,6 +61,7 @@ const CartList = () => {
     return total + item.price * (quantities[item._id] || 1);
   }, 0);
 
+  // データベースに送るためのデータをまとめます
   const orderData = {
     name: user?.fullName || "",
     email: user?.emailAddresses[0]?.emailAddress || "",

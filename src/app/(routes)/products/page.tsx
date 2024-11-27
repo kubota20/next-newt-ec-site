@@ -2,26 +2,28 @@
 // import { ProductData } from "@/datatest/product-data";
 
 // actions
-import { getProductList } from "@/actions/get-products";
+import { getPaginatedProducts } from "@/actions/get-products";
 import { getCategory } from "@/actions/get-categories";
 
 // components
 import { ProductCard } from "@/components/product-card";
 import Container from "@/components/ui/container";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { CategorySelect } from "@/components/category-select";
 import { TitleSearch } from "@/components/title-search";
+import ProductPagination from "@/components/product-pagination";
 
-const ProductsPage = async () => {
-  const productData = await getProductList();
+type Props = {
+  searchParams: { page?: string };
+};
+
+export const revalidate = 0;
+const ProductsPage = async ({ searchParams }: Props) => {
+  const currentPage = Number(searchParams.page) || 1;
+  const itemsPerPage = 6;
+  const { items, total } = await getPaginatedProducts(
+    currentPage,
+    itemsPerPage
+  );
 
   const categoryData = await getCategory();
 
@@ -34,38 +36,30 @@ const ProductsPage = async () => {
               <h2 className="font-bold text-3xl text-center">商品</h2>
             </div>
             <div className="flex items-center gap-2">
+              {/* カテゴリー選択 */}
               <CategorySelect catItem={categoryData} />
-              <TitleSearch productData={productData} />
+
+              {/* タイトル検索 */}
+              <TitleSearch productData={items} />
             </div>
           </div>
 
           {/* 商品カード */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-            {productData.map((item) => (
+            {items.map((item) => (
               <ProductCard key={item._id} item={item} />
             ))}
           </div>
-        </Container>
-      </div>
 
-      {/* ページネーション */}
-      <div className="mb-10">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+          {/* ページネーション */}
+          <div className="mb-10">
+            <ProductPagination
+              currentPage={currentPage}
+              total={total}
+              itemsPerPage={itemsPerPage}
+            />
+          </div>
+        </Container>
       </div>
     </div>
   );

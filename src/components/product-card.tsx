@@ -2,6 +2,7 @@
 
 import { MouseEventHandler } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // test
 // import { ProductDataProps } from "@/datatest/product-data";
@@ -14,7 +15,6 @@ import { Button } from "@/components/ui/button";
 
 // icon
 import { ChevronRight, ShoppingCart } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 // hooks
 import { useCart } from "@/hooks/use-cart";

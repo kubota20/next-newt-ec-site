@@ -1,8 +1,5 @@
 "use client";
 
-// type
-import type { Dispatch, SetStateAction } from "react";
-
 import {
   Select,
   SelectContent,
