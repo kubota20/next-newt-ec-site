@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // type
 import type { MouseEventHandler } from "react";
@@ -26,6 +26,7 @@ import { useUser } from "@clerk/nextjs";
 import toast from "react-hot-toast";
 
 const OrderModal = () => {
+  const router = useRouter();
   const { user } = useUser();
   const [quantity, setQuantity] = useState(1);
 
@@ -56,7 +57,7 @@ const OrderModal = () => {
     SaveOrder(orderData);
     toast.success("注文しました");
     cart.removeItem(product._id);
-    redirect("/carts");
+    router.push("/carts");
   };
 
   return (
