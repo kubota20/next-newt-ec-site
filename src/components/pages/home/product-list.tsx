@@ -12,7 +12,7 @@ import { getProductList } from "@/actions/get-products";
 // import { ProductData } from "@/datatest/product-data";
 
 const ProductList = async () => {
-  // 最初の一ページ目の５件だけ表示
+  // 最初の５件だけ表示
   const { items } = await getProductList(1, 5);
 
   return (
