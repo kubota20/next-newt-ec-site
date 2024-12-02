@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 // components
 import {
@@ -23,12 +23,19 @@ const ProductPagination = ({
   itemsPerPage: number;
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const pathName = usePathname();
 
   const totalPages = Math.ceil(total / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return; // 範囲外の場合
-    router.push(`/products?page=${page}`);
+    // 現在のクエリパラメータを保持しつつページ番号を変更
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", page.toString());
+
+    router.push(`${pathName}?${params.toString()}`);
   };
 
   return (

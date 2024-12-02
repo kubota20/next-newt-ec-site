@@ -27,9 +27,6 @@ import { useAuth } from "@clerk/nextjs";
 // toast
 import toast from "react-hot-toast";
 
-// actions
-// import { getProductById } from "@/actions/get-products";
-
 type ProductDataProps = {
   item: ProductProps | undefined;
 };

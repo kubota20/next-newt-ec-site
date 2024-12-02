@@ -36,7 +36,11 @@ export const getProductById = cache(async (productId: string) => {
 
 // ページネーション対応のデータ取得
 export const getPaginatedProducts = cache(
-  async (page: number = 1, limit: number = 10) => {
+  async (
+    page: number = 1,
+    limit: number = 10,
+    query: Record<string, string> = {}
+  ) => {
     const validLimit = Math.min(Math.max(limit, 1), 1000); // 1未満なら1、1000超なら1000に補正
 
     const skip = (page - 1) * validLimit; // スキップする件数を計算
@@ -46,6 +50,7 @@ export const getPaginatedProducts = cache(
       query: {
         skip,
         limit: validLimit,
+        ...query,
       },
     });
 

@@ -57,7 +57,7 @@ const OrderModal = () => {
     SaveOrder(orderData);
     toast.success("注文しました");
     cart.removeItem(product._id);
-    router.push("/carts");
+    router.push("/");
   };
 
   return (

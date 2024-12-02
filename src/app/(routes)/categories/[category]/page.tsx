@@ -7,7 +7,7 @@ import ProductPagination from "@/components/product-pagination";
 
 // actions
 import { getPaginatedProducts } from "@/actions/get-products";
-import { getCategory, getProductsByCategory } from "@/actions/get-categories";
+import { getCategory } from "@/actions/get-categories";
 
 // test
 // import { ProductData } from "@/datatest/product-data";
@@ -23,14 +23,15 @@ type Props = {
 export const revalidate = 0;
 
 const CategoriesPage = async ({ params, searchParams }: Props) => {
-  const data = await getProductsByCategory(params.category);
-
   const categoryData = await getCategory();
   const currentPage = Number(searchParams.page) || 1;
   const itemsPerPage = 6;
   const { items, total } = await getPaginatedProducts(
     currentPage,
-    itemsPerPage
+    itemsPerPage,
+    {
+      category: params.category,
+    }
   );
 
   const currentCategory = categoryData.find(
@@ -54,7 +55,7 @@ const CategoriesPage = async ({ params, searchParams }: Props) => {
 
           {/* 商品カード */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-            {data.map((item) => (
+            {items.map((item) => (
               <ProductCard key={item._id} item={item} />
             ))}
           </div>

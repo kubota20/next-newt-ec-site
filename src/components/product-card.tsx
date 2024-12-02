@@ -35,7 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/products/${item?._id}
+    router.push(`/products/${item._id}
 `);
   };
 
