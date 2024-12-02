@@ -4,9 +4,17 @@ import Image from "next/image";
 import News1 from "@/images/news1.jpg";
 import News2 from "@/images/news2.jpg";
 
-const NewsImage = () => {
+interface EventNewsProps {
+  isVisible: boolean;
+}
+
+const NewsImage: React.FC<EventNewsProps> = ({ isVisible }) => {
   return (
-    <div className="flex items-center justify-center w-[320px] lg:w-[535px] lg:h-[402px] overflow-hidden">
+    <div
+      className={`flex items-center justify-center w-[320px] lg:w-[535px] lg:h-[402px] overflow-hidden ${
+        isVisible ? "animate-slide-in-right" : ""
+      }`}
+    >
       <Image
         src={News1}
         alt="news image1"

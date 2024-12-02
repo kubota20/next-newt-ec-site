@@ -31,7 +31,7 @@ const CartAction = () => {
     <>
       {showCartButton && (
         <div className="fixed z-50 bottom-6 right-6">
-          <CartButton className="bg-black rounded-full" />
+          <CartButton className="bg-black rounded-full animate-bounce" />
         </div>
       )}
     </>

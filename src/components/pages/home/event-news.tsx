@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 // components
 import Container from "@/components/ui/container";
@@ -9,8 +12,31 @@ import NewsImage from "@/components/pages/home/news-image";
 import { NewsData } from "@/datatest/news-data";
 
 const EventNews = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Intersection Observerを使って、スクロール位置を監視
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true); // 見えたらアニメーションを開始
+        }
+      },
+      {
+        threshold: 0.1, // 要素が10%表示された時に発動
+      }
+    );
+
+    const element = document.getElementById("event-news");
+    if (element) observer.observe(element);
+
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   return (
-    <section className="bg-[#B5ADA8]">
+    <section id="event-news" className="bg-[#B5ADA8]">
       <Container>
         <div className="my-20">
           <div className="flex items-center justify-between">
@@ -25,7 +51,7 @@ const EventNews = () => {
             </div>
             {/* News Image */}
             <div className="flex-1 max-md:hidden w-full">
-              <NewsImage />
+              <NewsImage isVisible={isVisible} />
             </div>
           </div>
 
