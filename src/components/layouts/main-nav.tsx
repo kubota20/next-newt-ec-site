@@ -1,26 +1,30 @@
 import Link from "next/link";
 
-export const MainNav = () => {
+interface MainNavProps {
+  onClose: () => void;
+}
+
+export const MainNav: React.FC<MainNavProps> = ({ onClose }) => {
   const routes = [
+    {
+      href: `/`,
+      label: "ホーム",
+    },
     {
       href: `/products`,
       label: "商品",
-      active: `/products`,
     },
     {
       href: `/news`,
       label: "イベント",
-      active: `/news`,
     },
     {
       href: `/carts`,
       label: "カート",
-      active: `/cart`,
     },
     {
       href: `/contact`,
       label: "お問い合わせ",
-      active: `/contact`,
     },
   ];
 
@@ -28,7 +32,11 @@ export const MainNav = () => {
     <>
       {routes.map((route) => (
         <p key={route.href}>
-          <Link href={route.href} className="hover:text-slate-600">
+          <Link
+            href={route.href}
+            className="hover:text-slate-600"
+            onClick={onClose}
+          >
             {route.label}
           </Link>
         </p>

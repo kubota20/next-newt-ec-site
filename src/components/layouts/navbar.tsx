@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 // icon
 import { Menu } from "lucide-react";
 
@@ -13,9 +17,11 @@ import { MainNav } from "@/components/layouts/main-nav";
 import CartButton from "@/components/ui/cart-button";
 
 export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="flex items-center relative">
-      <Sheet>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger>
           <Menu />
         </SheetTrigger>
@@ -25,7 +31,7 @@ export const Navbar = () => {
           </SheetHeader>
           <div className="my-10">
             <nav className="flex flex-col gap-2">
-              <MainNav />
+              <MainNav onClose={() => setIsOpen(false)} />
             </nav>
             <div className="mt-3 ml-auto flex items-center gap-x-4">
               <CartButton className="rounded-full bg-black px-4 py-2" />

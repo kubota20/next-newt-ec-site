@@ -29,6 +29,7 @@ const OrderModal = () => {
   const router = useRouter();
   const { user } = useUser();
   const [quantity, setQuantity] = useState(1);
+  const loading = false;
 
   const cart = useCart();
   const orderModal = useOrderModal();
@@ -39,6 +40,7 @@ const OrderModal = () => {
     return null;
   }
 
+  // データベースに渡すデータを作成
   const orderData = {
     name: user?.fullName || "",
     email: user?.emailAddresses[0]?.emailAddress || "",
@@ -47,17 +49,30 @@ const OrderModal = () => {
     createdAt: new Date(),
   };
 
+  // 注文ボタンに渡しましす
   const handleOrder: MouseEventHandler<HTMLButtonElement> = async () => {
-    // ログインしてない場合
-    if (!user) {
-      toast.error("注文するにはログインが必要です");
-      return; // 処理を中断
-    }
+    try {
+      // ログインしてない場合
+      if (!user) {
+        toast.error("注文するにはログインが必要です");
+        return; // 処理を中断
+      }
+      // データベースに渡す
+      SaveOrder(orderData);
+      toast.success("注文しました");
 
-    SaveOrder(orderData);
-    toast.success("注文しました");
-    cart.removeItem(product._id);
-    router.push("/");
+      // カートにある場合削除
+      cart.removeItem(product._id);
+
+      // モーダルを閉じる
+      orderModal.onClose();
+
+      // ホームページに行く
+      router.push("/");
+    } catch (error) {
+      console.log("order error: ", error);
+      toast.error("注文に失敗しました。");
+    }
   };
 
   return (
@@ -71,6 +86,7 @@ const OrderModal = () => {
       description={product.description}
       image={product.image}
     >
+      {/* 合計金額 */}
       <div className="flex items-center justify-between my-4">
         <div className="flex">
           合計:
@@ -79,10 +95,13 @@ const OrderModal = () => {
         {/* 個数選択 */}
         <QuantitySelection setQuantity={setQuantity} />
       </div>
+
+      {/* 注文 & キャンセル ボタン */}
       <div className="flex items-center justify-center gap-4 mt-4">
         <Button
           className="bg-black text-white hover:bg-gray-700"
           onClick={handleOrder}
+          disabled={loading}
         >
           注文
         </Button>
@@ -92,6 +111,7 @@ const OrderModal = () => {
             setQuantity(1); // 個数をリセット
             orderModal.onClose();
           }}
+          disabled={loading}
         >
           キャンセル
         </Button>
