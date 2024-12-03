@@ -59,6 +59,7 @@ const OrderModal = () => {
       }
       // データベースに渡す
       SaveOrder(orderData);
+
       toast.success("注文しました");
 
       // カートにある場合削除

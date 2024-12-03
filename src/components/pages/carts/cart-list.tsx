@@ -41,6 +41,11 @@ const CartList = () => {
   const cart = useCart();
   const items = useCart((state) => state.items);
 
+  /**
+   * 注文する -> 個数選択 -> キャンセル -> 注文する
+   * 上記の動作をするとキャンセルしたのに個数選択や値段が初期化されなかったため
+   * ここで初期化をしています
+   */
   useEffect(() => {
     setIsMounted(true);
 
@@ -90,19 +95,20 @@ const CartList = () => {
     }
 
     try {
+      // データベースに渡す
       SaveOrder(orderData);
-      toast.success("注文が完了しました");
+
+      toast.success("注文しました");
+
+      // カートにある物全て削除
       cart.removeAll();
       router.push("/carts");
     } catch (error) {
       toast.error("注文出来ませんでした");
-
-      setTimeout(() => {
-        router.push("/carts");
-      }, 3000);
     }
   };
 
+  // 個数変更時
   const updateQuantity = (id: string, quantity: number) => {
     setQuantities((prev) => ({
       ...prev,
