@@ -31,7 +31,7 @@ export const Navbar = () => {
           </SheetHeader>
           <div className="my-10">
             <nav className="flex flex-col gap-2">
-              <MainNav onClose={() => setIsOpen(false)} />
+              <MainNav onClose={setIsOpen} />
             </nav>
             <div className="mt-3 ml-auto flex items-center gap-x-4">
               <CartButton className="rounded-full bg-black px-4 py-2" />

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface MainNavProps {
-  onClose: () => void;
+  onClose?: (value: boolean) => void;
 }
 
 export const MainNav: React.FC<MainNavProps> = ({ onClose }) => {
@@ -35,7 +35,7 @@ export const MainNav: React.FC<MainNavProps> = ({ onClose }) => {
           <Link
             href={route.href}
             className="hover:text-slate-600"
-            onClick={onClose}
+            onClick={() => onClose?.(false)}
           >
             {route.label}
           </Link>
