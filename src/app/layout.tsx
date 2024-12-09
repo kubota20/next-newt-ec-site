@@ -35,13 +35,12 @@ export default function RootLayout({
     <html lang="ja">
       <ClerkProvider localization={jaJP}>
         <body className={inter.className}>
-          <div className="flex flex-col justify-between">
-            <HeaderNav />
+          <HeaderNav />
 
-            {children}
-            <CartAction />
-            <Footer />
-          </div>
+          {children}
+          <CartAction />
+          <Footer />
+
           <ModalProvider />
           <ToastProvider />
         </body>
