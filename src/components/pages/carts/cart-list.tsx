@@ -35,7 +35,7 @@ const CartList = () => {
 
   const [isMounted, setIsMounted] = useState(false);
   const [quantities, setQuantities] = useState<{ [id: string]: number }>({});
-
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const cart = useCart();
@@ -94,7 +94,10 @@ const CartList = () => {
       return;
     }
 
+    if (loading) return;
+
     try {
+      setLoading(true);
       // データベースに渡す
       SaveOrder(orderData);
 
@@ -104,7 +107,10 @@ const CartList = () => {
       cart.removeAll();
       router.push("/carts");
     } catch (error) {
+      console.log("order all error: ", error);
       toast.error("注文出来ませんでした");
+    } finally {
+      setLoading(false); // 処理終了
     }
   };
 
@@ -138,11 +144,19 @@ const CartList = () => {
         {/* ０個以上商品がある場合表示 */}
         {cart.items.length > 0 && (
           <div className="flex items-center justify-around gap-4">
-            <Button className="border gap-2" onClick={handleAllOrder}>
+            <Button
+              className="border gap-2"
+              onClick={handleAllOrder}
+              disabled={loading}
+            >
               <ShoppingBag />
-              全て注文する
+              {loading ? "注文中..." : "全て注文する"}
             </Button>
-            <Button variant="destructive" onClick={handleClearCart}>
+            <Button
+              variant="destructive"
+              onClick={handleClearCart}
+              disabled={loading}
+            >
               カートを全て削除
             </Button>
             <div className="flex">

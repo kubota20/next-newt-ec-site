@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 // zod & formHook
@@ -41,6 +42,7 @@ const formSchema = z.object({
 });
 
 const ContactForm = () => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -72,16 +74,18 @@ const ContactForm = () => {
       );
 
       if (response.ok) {
-        toast.success("送信が成功しました。ホームページに戻ります。");
-
+        setLoading(true);
         router.push("/");
+        toast.success("送信しました");
       } else {
-        toast.error("送信に失敗しました。もう一度入力して下さい。");
         router.push("/contact");
+        toast.error("送信に失敗しました。もう一度入力して下さい。");
       }
     } catch (error) {
       toast.error("送信エラー");
       console.log("送信エラー:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -132,8 +136,12 @@ const ContactForm = () => {
             )}
           />
           <div className="text-center">
-            <Button type="submit" className="border text-white bg-black">
-              Submit
+            <Button
+              type="submit"
+              className="border text-white bg-black"
+              disabled={loading}
+            >
+              {loading ? "送信中..." : "送信"}
             </Button>
           </div>
         </form>

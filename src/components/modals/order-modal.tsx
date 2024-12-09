@@ -29,7 +29,7 @@ const OrderModal = () => {
   const router = useRouter();
   const { user } = useUser();
   const [quantity, setQuantity] = useState(1);
-  const loading = false;
+  const [loading, setLoading] = useState(false);
 
   const cart = useCart();
   const orderModal = useOrderModal();
@@ -51,7 +51,9 @@ const OrderModal = () => {
 
   // 注文ボタンに渡しましす
   const handleOrder: MouseEventHandler<HTMLButtonElement> = async () => {
+    if (loading) return; // すでに処理中なら何もしない
     try {
+      setLoading(true);
       // ログインしてない場合
       if (!user) {
         toast.error("注文するにはログインが必要です");
@@ -73,6 +75,8 @@ const OrderModal = () => {
     } catch (error) {
       console.log("order error: ", error);
       toast.error("注文に失敗しました。");
+    } finally {
+      setLoading(false); // 処理終了
     }
   };
 
@@ -104,7 +108,7 @@ const OrderModal = () => {
           onClick={handleOrder}
           disabled={loading}
         >
-          注文
+          {loading ? "注文中..." : "注文"}
         </Button>
         <Button
           variant="destructive"
