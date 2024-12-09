@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <>
       {isLayoutPage && (
-        <footer className="bg-[#191919] text-white">
+        <footer className="bg-[#191919] text-white ">
           <div className="flex items-center justify-around h-[300px] gap-2">
             {/* マップ 住所 */}
             <div className="flex flex-col items-center">
@@ -57,6 +57,8 @@ const Footer = () => {
           <p className="text-center py-6">© 2024 books All Rights Reserved.</p>
         </footer>
       )}
+
+      {/* ホームページ専用 Footer */}
       {isHomePage && <HomeFooter />}
     </>
   );
