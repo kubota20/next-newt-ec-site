@@ -80,10 +80,6 @@ const CartList = () => {
 
   //全てのカートの削除
   const handleClearCart = () => {
-    if (!isSignedIn) {
-      toast.error("カートを操作するにはログインが必要です");
-      return;
-    }
     cart.removeAll();
   };
 
