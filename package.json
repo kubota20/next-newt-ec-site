@@ -13,11 +13,9 @@
   "dependencies": {
     "@clerk/localizations": "^2.4.8",
     "@clerk/nextjs": "^5.7.1",
-    "@headlessui/react": "^2.1.8",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
-    "@radix-ui/react-hover-card": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-select": "^2.1.1",
@@ -35,16 +33,12 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.1",
     "react-hot-toast": "^2.4.1",
-    "server-only": "^0.0.1",
-    "sharp": "^0.33.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8",
     "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -52,7 +46,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "jsdom": "^25.0.1",
-    "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vitest": "^2.1.6"
