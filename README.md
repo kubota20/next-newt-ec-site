@@ -1,7 +1,5 @@
 # Next.js 14 CMS 　 Newt EC Site
 
-- EC Design Library (参考サイト)
-
 ## EC サイト 制作の流れ
 
 ### 1. Figma で EC サイトの ER 図とサイトマップを作成
