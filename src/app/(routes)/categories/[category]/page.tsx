@@ -40,7 +40,7 @@ const CategoriesPage = async ({ params, searchParams }: Props) => {
 
   return (
     <div className="flex flex-col h-full bg-[rgb(248,248,248)]">
-      <div className="my-32">
+      <div className="max-sm:my-12 sm:my-32 lg:my-24">
         <Container>
           <div className="flex items-center justify-between my-16 max-sm:flex-col max-sm:space-y-4">
             <div className="w-full flex items-center justify-center">

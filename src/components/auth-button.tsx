@@ -23,7 +23,9 @@ export const AuthButton = () => {
     return (
       <>
         <SignUpButton mode="modal">
-          <p className="hover:text-slate-600 hover:cursor-pointer">会員登録</p>
+          <p className="hover:text-slate-600 hover:cursor-pointer max-sm:text-xs text-nowrap">
+            会員登録
+          </p>
         </SignUpButton>
         <SignInButton mode="modal">
           <p className="hover:text-slate-600 hover:cursor-pointer">

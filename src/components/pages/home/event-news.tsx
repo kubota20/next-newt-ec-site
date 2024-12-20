@@ -38,10 +38,12 @@ const EventNews = () => {
   return (
     <section id="event-news" className="bg-[#B5ADA8]">
       <Container>
-        <div className="my-20">
-          <div className="flex items-center justify-between">
-            <div className="w-full flex flex-col max-md:items-center justify-center">
-              <h2 className="mb-10 text-4xl font-bold">近日行われるイベント</h2>
+        <div className="my-20 ">
+          <div className="flex items-center justify-between ">
+            <div className="w-full flex flex-col max-md:items-center justify-center ">
+              <h2 className="mb-10 text-2xl sm:text-4xl font-bold ">
+                近日行われるイベント
+              </h2>
               {/* News */}
               <div className="flex-1 mr-4">
                 {NewsData.map((item) => (

@@ -10,7 +10,7 @@ const News = () => {
   return (
     <>
       <Container>
-        <div className="my-32">
+        <div className="my-32 ">
           <Info title={item.title} />
           <div className="mt-10">
             <p>{item.date}</p>
