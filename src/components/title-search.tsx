@@ -67,13 +67,13 @@ export const TitleSearch = ({ productData }: Props) => {
             <CommandList>
               <CommandEmpty>見つかりませんでした</CommandEmpty>
               <CommandGroup>
-                {fromattedItems.map((item, index) => (
+                {fromattedItems.map((item) => (
                   <CommandItem
                     key={item.label}
                     value={item.label}
                     onSelect={() => handleSelect(item)}
                   >
-                    {index < 5 && item.label}
+                    {item.label}
                   </CommandItem>
                 ))}
               </CommandGroup>
