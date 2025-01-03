@@ -28,8 +28,12 @@ export const useCart = create(
           (currentItem) => currentItem?._id === item?._id
         );
 
+        if (!existingItem) {
+          toast.success("カートに追加されました");
+        }
+
         if (existingItem) {
-          return toast("すでにカートに入ってます");
+          return toast.error("すでにカートに入ってます");
         }
 
         set({ items: [...currentItems, item] });

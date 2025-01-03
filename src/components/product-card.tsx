@@ -43,7 +43,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
     if (!isSignedIn) {
       return toast.error("カートに商品を追加するにはログインしてください");
     }
-    toast("カートに追加しました");
     cart.addItem(item);
   };
 
