@@ -1,114 +1,22 @@
 # Next.js 14 CMS 　 Newt EC Site
 
-## EC サイト 制作の流れ
+## 概要説明
 
-### 1. Figma で EC サイトの ER 図とサイトマップを作成
+この EC サイトでは、Clerk を利用した認証機能や Firebase による注文管理、NewtCMS を使った商品管理やメッセージ管理など実装しています。特に、状態管理には Zustand を採用し、カート機能やモーダルの操作を効率化することでユーザーがストレスなく操作できるよう工夫しました。スタイルには Tailwind CSS を使用し、Shadcn/UI の UI コンポーネントを活用しています。
 
-- [EC サイトの ER 図 & サイトマップ](https://www.figma.com/board/d2IByXLh9CprBUUNSJqWO3/%E7%84%A1%E9%A1%8C?node-id=1-591&t=HDTq8071YdY6wlEm-1)
+## EC サイト 制作前の流れ
 
-### 2. canva で簡単なデザインを作成
+1. Figma で ER 図とサイトマップを作成
 
-- [ホームページ](https://nextectest.my.canva.site/) `テスト用`
-- [canva で作成](https://www.canva.com/design/DAGKJcFnV2k/4hyg8SuUP9YJaMroEo0Ivg/edit?utm_content=DAGKJcFnV2k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- [Figma](https://www.figma.com/board/d2IByXLh9CprBUUNSJqWO3/%E7%84%A1%E9%A1%8C?node-id=1-591&t=HDTq8071YdY6wlEm-1)
 
-タブレット、PC 用のレスポンシブデザインはそのままを[ホームページ](https://nextectest.my.canva.site/)デザインを使用するが。
-スマホ用のレスポンシブ対応になってないのでそこは後付けになりますが自分でスタイルを追加していきます。
+2. canva で簡単なデザインを作成
 
-### 3. ページ
+- [canva テストサイト](https://nextectest.my.canva.site/) `テスト用`
 
-- (Logo)ホーム
-- (Products)商品 -> (Product)単品商品
-- (Categories)カテゴリ ー> (Category)1 つのカテゴリー
-- (Login)ログイン = アカウント = (Logout)ログアウト
-- (Contact)お問い合せ
-- (Carts)カート
+## ホームページ
 
-### 4. モーダル
-
-- ログイン
-- アカウント登録
-- 注文
-- カート
-- 削除(注文,カート)
-
-### 5. レスポンシブ
-
-- Max: 1280px
-- PC : 1024px
-- タブレット : 640px
-- スマホ : 380px
-
-### 5. Next.js のプロジェクトを作成
-
-`create-next-app`をしていきます。
-
-```
-pnpm create next-app my-app --typescript --tailwind --eslint
-```
-
-その後`GitHub`にリモートリポジトリにして push します。
-
-#### コマンドの中身
-
-- `pnpm` : 高速で効率的なパッケージマネージャー。npm や yarn の代替として使用されます。
-- `create next-app` ： Next.js の公式 CLI（コマンドラインインターフェイス）ツールを使用して新しい Next.js プロジェクトを作成します。
-- `my-app` : 作成するプロジェクトの名前。この場合、プロジェクトは「my-app」というディレクトリに作成されます。
-- `--typescript` : 新しいプロジェクトに TypeScript を使用するオプション。これにより、TypeScript の設定ファイルとサンプルコードがプロジェクトに追加されます。
-- `--tailwind` : Tailwind CSS をプロジェクトに組み込むオプション。これにより、Tailwind CSS の設定が自動的に追加され、スタイリングに使用できるようになります。
-- `--eslint` : ESLint をプロジェクトに追加するオプション。これにより、コードの品質と一貫性を保つためのリンティングツールが設定されます。
-
-### 6. テスト用のデータを作成
-
-`newt CMS`を使用する前にテスト用の[データ](/my-app/src/datatest)を作成します。最初はスタイルを当てたいため`newt`で使用する画像やテキストを`datatest`で作りそれ等をテストします。フリー画像に`pixabay`を使用しました。
-
-- [pixabay](https://pixabay.com/)
-
-### 7. ページを作成
-
-`datatest`を使用しホームページ、お問い合せページ、news ページ、他色々、を作成していきます。ここまでの作成は静的ページだけです。
-
-### 8. vercel にデプロイ
-
-[vercel](https://vercel.com/) > `Add New` > `Project` > push してある`Git Repository`を`import` > `Configure Project`設定 > Deploy
-
-[初期デプロイ](https://next-newt-ec-site-kuc8cuxm9-kubota20s-projects.vercel.app/)
-
-初期デプロイは認証機能の`clerk`や Headless CMS の`newt CMS`は使用していません。また動的ルートもまだ入れていません。デザインだけになります。
-初期デプロイ後に色々導入していきます。
-
-### 9. 動的ルート
-
-動的ルートを作っていきます。作るのは news ページと商品ページの動的ページを作成します。
-
-カテゴリーを忘れていたので categories ページと動的ページの作成と追加で Products ページにカテゴリー選択と検索 input を追加していきます。
-
-`追加した動的ページ`
-
-- [categories](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/categories/a) : `[categoryId]`
-- [products](https://next-newt-ec-site-gkqhxennp-kubota20s-projects.vercel.app/products/a) : `[productId]`
-
-categoryId と productId の中身は同じなのでそのまま使い回してます。
-
-### 10. Clerk を使って認証機能を導入
-
-最初は`next-auth`を使って認証機能を入れようとしましたが、コードが多くなるとサイトの表示速度が遅くなるのと、簡単に導入できコード量も少なくユーザー情報も管理出来るので`Clerk`を選びました。
-
-### 11. Newt (ニュート)
-
-`Newt`とはクラウドサービスとして提供され、API によるコンテンツ配信と柔軟なコンテンツモデリングを行うことができる`ヘッドレスCMS`です。
-
-Newt での作成の流れは[ドキュメント](https://www.newt.so/docs/tutorials/get-contents-in-nextjs)を参考にしています。
-
-1. Newt に[ログイン](https://www.newt.so/)
-2. `Appを追加`で`テンプレートから追加`を押し、Blog と Contact を作成
-3. Blog の名前を News と Product に修正
-4. それぞれのモデルや記事投稿は[datatest](/my-app/src/datatest/)の中身を参考に作成
-5. curl コマンドでリクエスト送り正しくレスポンスが返ってくるか確認
-6. Newt の[SDK](https://github.com/Newt-Inc/newt-client-js?tab=readme-ov-file)を利用
-7. 環境変数を設定
-8. [lib/newt.ts](/my-app/src/lib/newt.ts)を作成し API クライアントを作成
-9. [型定義](/my-app/src/types/types.ts)を作成
-10. [actions](/my-app/src/actions/)で取得メソッドを作成
+[PC 用ホームページ全体](/my-app/site-images/image-1.png)
 
 ## 警告やエラーの対処
 
@@ -125,7 +33,7 @@ Newt での作成の流れは[ドキュメント](https://www.newt.so/docs/tutor
 
 ### TypeScript
 
-- Newt (エラー)
+### Newt (エラー)
 
 Newt での画像の型定義をする場合必ず`height`や`width`を必ず入れてください。
 next/image コンポーネントは`StaticImageData`型を使って画像の情報を管理します。
@@ -184,11 +92,11 @@ export const Product = ({ item }: ProductDataProps) => {
 
 ### next/iamge
 
-- `objectFitとlayout`プロパティ (警告)
+#### `objectFitとlayout`プロパティ (警告)
 
 Next.js 13 以降では使わないので`objectFitとlayout`プロパティは削除
 
-- `Largest Contentful Paint (LCP)` (警告)
+#### `Largest Contentful Paint (LCP)` (警告)
 
 `LCP`とはウェブページのメインコンテンツが読み込まれるまでの時間を測定するパフォーマンス指標です。
 LCP の警告が出たのはホームページの[スライド画像](/my-app/src/components/pages/home/top-images.tsx)なので`next/iamge`で画像を自動的に最適化するには`priority`プロパティを使って最適化します。
@@ -217,14 +125,6 @@ const nextConfig = {
 
 export default nextConfig;
 ```
-
-### Style
-
-[カテゴリ選択](/my-app/src/components/ui/category-select.tsx)で何故か`ノンフィクション`を選択すると商品カードのスタイルがおかしい事に、他の選択しても問題なし。
-
-解決しました。
-
-問題はカテゴリページの Container の位置が間違っていました。`Pagination`まで入れてたのを 商品カードまでに修正しました。
 
 ## 出来なかったこと
 
