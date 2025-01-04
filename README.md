@@ -1,5 +1,7 @@
 # Next.js 14 NewtCMS EC Site
 
+- [デモサイト](https://next-newt-ec-site.vercel.app/)で確認
+
 ## 概要説明
 
 この EC サイトでは、以下の技術を活用して主要な機能を実装しました
@@ -9,8 +11,6 @@
 - NewtCMS を用いた商品およびお問い合わせメッセージの管理。
 - Zustand を採用した軽量で効率的な状態管理（例: カートやモーダル操作）。
 - Tailwind CSS と Shadcn/UI を用いたレスポンシブでスタイリッシュなデザイン。す。
-
-- [デモサイト](https://next-newt-ec-site.vercel.app/)
 
 ## EC サイト 制作前の流れ
 
