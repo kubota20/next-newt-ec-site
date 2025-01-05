@@ -10,7 +10,7 @@
 - Firebase Firestore を活用した注文データの管理。
 - NewtCMS を用いた商品およびお問い合わせメッセージの管理。
 - Zustand を採用した軽量で効率的な状態管理（例: カートやモーダル操作）。
-- Tailwind CSS と Shadcn/UI を用いたレスポンシブでスタイリッシュなデザイン。す。
+- Tailwind CSS と Shadcn/UI を用いたレスポンシブでスタイリッシュなデザインです。
 
 ## EC サイト 制作前の流れ
 
