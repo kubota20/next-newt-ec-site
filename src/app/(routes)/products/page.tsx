@@ -29,7 +29,7 @@ const ProductsPage = async ({ searchParams }: Props) => {
 
   return (
     <div className="flex flex-col h-full bg-[rgb(248,248,248)]">
-      <div className="my-32">
+      <div className="max-sm:my-16 my-32">
         <Container>
           <div className="flex items-center justify-between my-16">
             <div className="w-full">
